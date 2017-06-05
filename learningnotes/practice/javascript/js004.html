@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1 ul,#div2 ul{margin: 0;display: none;}
+		#div1 ul a,#div2 ul a{float: right;}
+		#div3 table{margin: 0;}
+		#div4 table{margin: 0;border-radius:4px;}
+	</style>
+</head>
+<bpdy>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re form-inline">
+	一、创建li子节点<br><br>
+	<input type="text" class="form-control" placeholder="必填"> <button type="button" class="btn btn-info">添加</button><br><br>
+	<ul class="list-group">
+	</ul>
+</div>
+<div id="div2" class="box box-re form-inline">
+	二、新创建的li子节点在最前<br><br>
+	<input type="text" class="form-control" placeholder="必填"> <button type="button" class="btn btn-info">添加</button><br><br>
+	<ul class="list-group">
+	</ul>
+</div>
+<div id="div3" class="box box-re form-inline">
+	三、添加tr子节点<br><br>
+	姓名：<input type="text" class="form-control" placeholder="必填"> 年龄：<input type="text" class="form-control" placeholder="必填"> <button type="button" class="btn btn-info">添加</button><br><br>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td style="width:25%">ID</td>
+			<td style="width:25%">姓名</td>
+			<td style="width:25%">年龄</td>
+			<td style="width:25%">操作</td>
+		</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+<div id="div4" class="box box-re form-inline">
+	四、搜索子节点<br><br>
+	姓名：<input type="text" class="form-control" placeholder="必填"> <button type="button" class="btn btn-info">查找</button><br><br>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+			<td>操作</td>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>33</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>44</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>55</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>66</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Danny</td>
+			<td>21</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>张大神</td>
+			<td>28</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td>李大神</td>
+			<td>23</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>8</td>
+			<td>王大神</td>
+			<td>24</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>9</td>
+			<td>赵大神</td>
+			<td>25</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>10</td>
+			<td>D大神</td>
+			<td>27</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div id="div5" class="box box-re form-inline">
+	五、函数返回值 return<br><br>
+	例1：return函数内容传出，已知将输入框的value作为函数返回值，return按钮输出。return内容用不用变量存没关系，可以直接调用函数名输出。<br>
+	<input  type="text" class="form-control" placeholder="输入什么 返回什么" /> <button class="btn btn-info">return</button>（输出变量内容）<br><br>
+	例2：return参数内容传出，已知将两个输入框的value作为参数返回值，return按钮相加后输出。<br>
+	<input  type="text" class="form-control" /> 加 <input  type="text" class="form-control" /> <button class="btn btn-info">return</button>（输出参数相加内容）
+</div>
+
+<div id="div6" class="box box-re form-inline">
+	六、函数传参 arguments<br><br>
+	例1：已知传给参数内容：<code>alert(sum(12,13,14))</code>，做个arguments.length的循环，并且每循环一次把参数里的数依次相加，整个参数数组加一遍为止。最后再把这个结果通过return返回出来。<br>
+	<button class="btn btn-info">循环相加结果</button>
+</div>
+
+<div id="div7" class="box box-re form-inline">
+	七、CSS函数 行间样式<br><br>
+	<b>源码内有解释</b> 这个函数可以根据参数不同匹配相应的功能。如果是两个参数，就是获取CSS样式。如果是三个参数，就是设置CSS样式。<br>
+	<button class="btn btn-info">获取行间样式</button> <button class="btn btn-info">设置行间样式</button>（需要设置成100%的宽度，100px的高度，背景颜色为黑色）<br><br>
+	<button class="btn btn-info">获取行间样式</button> <button class="btn btn-info">设置行间样式</button> 已封装
+	<div class="box box-re" style="width: 50%;height: 200px;background: yellow;"></div>
+</div>
+
+<div id="div8" class="box box-re form-inline">
+	八、CSS函数 非行间样式<br><br>
+	因为浏览器兼容问题，所以获取非行间样式需要做个判断。<br>
+	<button class="btn btn-info">获取非行间样式</button>未封装 <button class="btn btn-info">获取非行间样式</button>已封装
+	<div class="box box-re"></div>
+</div>
+<script>
+	function getClass(oParent,oClassName)
+	{
+		var obj=oParent.getElementsByTagName('*');
+		var arr=[];
+		for(var i=0;i<obj.length;i++)
+		{
+			if(obj[i].className==oClassName)
+			{
+				arr.push(obj[i]);
+			}
+		}
+		return arr;
+	}
+	function getStyle(obj,attr)
+	{
+		if(obj.currentStyle)
+		{
+			return obj.currentStyle[attr];
+		}
+		else
+		{
+			return getComputedStyle(obj,false)[attr];
+		}
+	}
+	function getSetStyle()
+	{
+		if(arguments.length==2)
+		{
+			return arguments[0].style[arguments[1]];
+		}
+		else
+		{
+			arguments[0].style[arguments[1]]=arguments[2];
+		}
+	}
+	window.onload=function ()
+	{
+		var oDiv1=document.getElementById('div1');
+		var aIpt1=oDiv1.getElementsByTagName('input')[0];
+		var aBtn1=oDiv1.getElementsByTagName('button')[0];
+		aBtn1.onclick=function ()
+		{
+			if(aIpt1.value=='')
+			{
+				alert('必须输入内容才能创建li');
+			}
+			else
+			{
+				var oUl=oDiv1.getElementsByTagName('ul')[0];
+				oUl.style.display='block';
+				var oLi=document.createElement('li');
+				oLi.innerHTML=aIpt1.value;
+				oLi.className='list-group-item';
+				oUl.appendChild(oLi);
+				for(var i=0;i<oUl.children.length;i++)
+				{
+					if(i%2==0)
+					{
+						oLi.className='list-group-item list-group-item-info';
+					}
+					else
+					{
+						oLi.className='list-group-item';
+					}
+				}
+			}
+		}
+
+		var oDiv2=document.getElementById('div2');
+		var aIpt2=oDiv2.getElementsByTagName('input')[0];
+		var aBtn2=oDiv2.getElementsByTagName('button')[0];
+		aBtn2.onclick=function ()
+		{
+			if(aIpt2.value=='')
+			{
+				alert('必须输入内容才能创建li');
+			}
+			else
+			{
+				var oUl=oDiv2.getElementsByTagName('ul')[0];
+				oUl.style.display='block';
+				var oLi=document.createElement('li');
+				oLi.className='list-group-item';
+				oLi.innerHTML=aIpt2.value;
+				if(oUl.children.length>0)
+				{
+					oUl.insertBefore(oLi,oUl.children[0]);
+				}
+				else
+				{
+					oUl.appendChild(oLi);
+				}
+				for(var i=0;i<oUl.children.length;i++)
+				{
+					if(i%2==0)
+					{
+						oLi.className='list-group-item list-group-item-info';
+					}
+					else
+					{
+						oLi.className='list-group-item';
+					}
+				}
+			}
+		}
+
+		var oDiv3=document.getElementById('div3');
+		var aIpt3=oDiv3.getElementsByTagName('input');
+		var aBtn3=oDiv3.getElementsByTagName('button')[0];
+		var aTab3=oDiv3.getElementsByTagName('table')[0];
+		var aId3 =aTab3.tBodies[0].children.length+1;
+		aBtn3.onclick=function ()
+		{
+			if(aIpt3[0].value==''||aIpt3[1].value==''||!isNaN(aIpt3[0].value)||isNaN(aIpt3[1].value))
+			{
+				alert('准确填写后才能添加');
+			}
+			else
+			{
+				var oTr=document.createElement('tr');
+				var oTd=document.createElement('td');
+				oTd.innerHTML=aId3++;
+				oTr.appendChild(oTd);
+				var oTd=document.createElement('td');
+				oTd.innerHTML=aIpt3[0].value;
+				oTr.appendChild(oTd);
+				var oTd=document.createElement('td');
+				oTd.innerHTML=aIpt3[1].value;
+				oTr.appendChild(oTd);
+				var oTd=document.createElement('td');
+				oTd.innerHTML='<a href="javascript:;">删除</a>';
+				oTd.getElementsByTagName('a')[0].onclick=function ()
+				{
+					this.parentNode.parentNode.style.background='yellow';
+					var toDelete=confirm('是否删除此行');
+					if(toDelete==true)
+					{
+						aTab3.tBodies[0].removeChild(this.parentNode.parentNode);
+					}
+					else
+					{
+						this.parentNode.parentNode.removeAttribute('style');
+					}
+				}
+				oTr.appendChild(oTd);
+				aTab3.tBodies[0].appendChild(oTr);
+			}
+		}
+
+		var oDiv4=document.getElementById('div4');
+		var aIpt4=oDiv4.getElementsByTagName('input')[0];
+		var aBtn4=oDiv4.getElementsByTagName('button')[0];
+		var aTab4=oDiv4.getElementsByTagName('table')[0];
+		aBtn4.onclick=function ()
+		{
+			for(var i=0;i<aTab4.tBodies[0].rows.length;i++)
+			{
+				aTab4.tBodies[0].rows[i].removeAttribute('style');
+
+				var oTxt=aIpt4.value.toLowerCase();
+				var oTab=aTab4.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+				var aArr=[];
+				oTxt.split(' ');
+				for(var j=0;j<oTxt.length;j++)
+				{
+					aArr[i]=oTxt[i];
+					if(oTab.search(oTxt[j])!=-1)
+					{
+						aTab4.tBodies[0].rows[i].setAttribute('style','background:red');
+					}
+				}
+			}
+		}
+		for(var i=0;i<getClass(aTab4.tBodies[0],'deltr').length;i++)
+		{
+			getClass(aTab4.tBodies[0],'deltr')[i].onclick=function ()
+			{
+				aTab4.tBodies[0].removeChild(this.parentNode.parentNode);
+			}
+		}
+
+		var oDiv5=document.getElementById('div5');
+		var aIpt5=oDiv5.getElementsByTagName('input');
+		var aBtn5=oDiv5.getElementsByTagName('button');
+		aBtn5[0].onclick=function ()
+		{
+			function sum ()
+			{
+				var n=aIpt5[0].value;
+				return n;
+			}
+			alert(sum ());
+		}
+		aBtn5[1].onclick=function ()
+		{
+			var n1=aIpt5[1].value;
+			var n2=aIpt5[2].value;
+			function sum (a,b)
+			{
+				return a+b;
+			}
+			alert(sum(n1,n2));
+		}
+
+		var oDiv6=document.getElementById('div6');
+		var aBtn6=oDiv6.getElementsByTagName('button')[0];
+		aBtn6.onclick=function ()
+		{
+			function sum ()
+			{
+				var result=0;
+				for(var i=0;i<arguments.length;i++)
+				{
+					result+=arguments[i];
+				}
+				return result;
+			}
+			alert(sum(12,13,14))
+		}
+
+		var oDiv7=document.getElementById('div7');
+		var aBtn7=oDiv7.getElementsByTagName('button');
+		var aDiv7=oDiv7.getElementsByTagName('div')[0];
+		aBtn7[0].onclick=function ()
+		{
+			var txt=aDiv7.getAttribute('style');
+			aDiv7.innerHTML=txt;
+		}
+		aBtn7[1].onclick=function ()
+		{
+			aDiv7.setAttribute('style','width:100%;height:100px;background:#000;');
+		}
+		aBtn7[2].onclick=function ()
+		{
+			aDiv7.innerHTML=getSetStyle(aDiv7,'background');
+		}
+		aBtn7[3].onclick=function ()
+		{
+			getSetStyle(aDiv7,'width','100%');
+			getSetStyle(aDiv7,'height','100px');
+			getSetStyle(aDiv7,'background','#000000');
+		}
+
+		var oDiv8=document.getElementById('div8');
+		var aBtn8=oDiv8.getElementsByTagName('button');
+		var aDiv8=oDiv8.getElementsByTagName('div')[0];
+		aBtn8[0].onclick=function ()
+		{
+			if(aDiv8.currentStyle)
+			{
+				aDiv8.innerHTML=aDiv8.currentStyle['background'];
+			}
+			else
+			{
+				aDiv8.innerHTML=getComputedStyle(aDiv8,false)['background'];
+			}
+		}
+		aBtn8[1].onclick=function ()
+		{
+			aDiv8.innerHTML=getStyle(aDiv8,'background');
+		}
+	}
+</script>
+</bpdy>
+</html>

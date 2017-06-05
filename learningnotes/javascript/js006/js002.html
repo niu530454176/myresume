@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#scrollTop{width: 80px;height: 300px;background: yellow;position: absolute;right: 0;bottom: 0px;display: none;transition:none;}
+		#scrollTop button{border-radius: 0;position: absolute;right: 0;bottom: 0;}
+		body{height: 2000px;}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=442978dc8e0012bf609ee519dd7e2db21eb7b12318df66c0342edae75550997d" class="right"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="东山群-电脑网络技术" title="东山群-电脑网络技术"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	1、可视区尺寸<br><br>
+	<code>document.documentElement.clientWidth & document.documentElement.clientHeight</code><br><br>
+	<button class="btn btn-info">开启页面点击</button><br><br>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、滚动距离<br><br>
+	<code>document.body.scrollTop & document.documentElement.scrollTop</code><br><br>
+	<button class="btn btn-info">查看滚动距离</button><br><br>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	3、浮动层<br><br>
+	<code>window.onscroll & window.onresize</code><br><br>
+	<button class="btn btn-info">展现浮动层</button><br><br>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p>可视区尺寸：窗口大小影响可视区尺寸，计算后的尺寸不包括滚动条。</p>
+	<p>window.onscroll：当窗口滚动时发生。</p>
+	<p>window.onresize：当窗口改变大小时发生。</p>
+</div>
+<div id="scrollTop">浮动层</div>
+<script>
+	window.onload=function ()
+	{
+		var oDiv1=document.getElementById('div1');
+		var aBtn1=oDiv1.getElementsByTagName('button')[0];
+		aBtn1.onclick=function ()
+		{
+			alert('当前可视区宽度：'+document.documentElement.clientWidth+'，当前可视区高度：'+document.documentElement.clientHeight);
+		}
+
+		var oDiv2=document.getElementById('div2');
+		var aBtn2=oDiv2.getElementsByTagName('button')[0];
+		aBtn2.onclick=function ()
+		{
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+			alert('当前滚动距离：'+scrollTop);
+		}
+
+		var oDiv3=document.getElementById('div3');
+		var aBtn3=oDiv3.getElementsByTagName('button')[0];
+		var oSTop=document.getElementById('scrollTop');
+
+		aBtn3.onclick=function ()
+		{
+			if(this.innerHTML=='展现浮动层')
+			{
+				this.innerHTML='隐藏浮动层';
+				this.className='btn btn-danger';
+				oSTop.style.display='block';
+			}
+			else
+			{
+				this.innerHTML='展现浮动层';
+				this.className='btn btn-info';
+				oSTop.style.display='none';
+			}
+		}
+	}
+	window.onscroll=window.onresize=function ()
+	{
+		var oSTop=document.getElementById('scrollTop');
+		var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+		oSTop.style.top=scrollTop+document.documentElement.clientHeight-oSTop.offsetHeight+'px';
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		li a{float: right;}
+	</style>
+</head>
+<body>
+<html
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re form-inline">
+	1、DOM节点 首尾子节点<br><br>
+	<div class="box box-re">
+		例1：首尾节点<br><br>
+		<ul class="list-group">
+			<li class="list-group-item">子节点1 首节点</li>
+			<li class="list-group-item">子节点2</li>
+			<li class="list-group-item">子节点2 尾节点</li>
+		</ul>
+		<button class="btn btn-info">修改首节点文字</button> <code>firstChild & firstElementChild</code><br><br>
+		<button class="btn btn-info">修改尾节点文字</button> <code>lastChild & lastElementChild</code>
+	</div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、DOM节点 兄弟节点<br><br>
+	<div class="box box-re">
+		例1：首尾节点<br><br>
+		<ul class="list-group">
+			<li class="list-group-item">子节点1 首节点</li>
+			<li class="list-group-item">子节点2</li>
+			<li class="list-group-item">子节点2 尾节点</li>
+		</ul>
+		<button class="btn btn-info">查看子节点2前兄弟节点</button> <code>previousSibling & previousElementSibling</code><br><br>
+		<button class="btn btn-info">查看子节点2后兄弟节点</button> <code>nextSibling & nextElementSibling</code>
+	</div>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>首尾子节点：</b>firstChild & firstElementChild / lastChild & lastElementChild</p>
+	<p><b>兄弟子节点：</b>previousSibling & previousElementSibling / nextSibling & nextElementSibling</p>
+	<p><b>兼容问题：</b>都是通过判断来解决兼容问题</p>
+</div>
+<script>
+	function getLastChild(obj)
+	{
+		if(obj.lastElementChild)
+		{
+			return obj.lastElementChild;
+		}
+		else
+		{
+			return obj.lastChild;
+		}
+	}
+	function getNextSibling(obj)
+	{
+		if(obj.nextElementSibling)
+		{
+			return obj.nextElementSibling;
+		}
+		else
+		{
+			return obj.nextSibling;
+		}
+	}
+	window.onload=function ()
+	{
+		var oDiv1=document.getElementById('div1');
+		var aDiv1=oDiv1.getElementsByTagName('div')[0];
+		var aBtn1=aDiv1.getElementsByTagName('button');
+		var aUl1=aDiv1.getElementsByTagName('ul')[0];
+		aBtn1[0].onclick=function ()
+		{
+			if(aUl1.firstElementChild)
+			{
+				aUl1.firstElementChild.innerHTML='成功修改 首节点';
+			}
+			else
+			{
+				aUl1.firstChild.innerHTML='成功修改 首节点';
+			}
+		}
+		aBtn1[1].onclick=function ()
+		{
+			getLastChild(aUl1).innerHTML='成功修改 尾节点';
+		}
+
+		var oDiv2=document.getElementById('div2');
+		var aBtn2=oDiv2.getElementsByTagName('button');
+		var aUl2=oDiv2.getElementsByTagName('ul')[0];
+		var aLi2=oDiv2.getElementsByTagName('li');
+		aBtn2[0].onclick=function ()
+		{
+			if(aLi2[1].previousElementSibling)
+			{
+				alert(aLi2[1].previousElementSibling.innerHTML);
+			}
+			else
+			{
+				alert(aLi2[1].previousSibling.innerHTML);
+			}
+		}
+		aBtn2[1].onclick=function ()
+		{
+			alert(getNextSibling(aLi2[1]).innerHTML);
+		}
+	}
+</script>
+</body>
+</html>

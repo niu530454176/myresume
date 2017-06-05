@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1 > div {
+			font-size: 48px;
+			color: #fff;
+		}
+
+		#div1 > div.alert-info {
+			display: none;
+			padding: 20px;
+			margin: 0px;
+		}
+
+		#div1.box .btn {
+			border-radius: 0;
+		}
+
+		#div1 > button.btn.btn-info\2e active {
+			background: #d9edf7;
+		}
+
+		.table, .list-group {
+			margin-bottom: 0;
+		}
+
+		thead tr {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re form-inline">
+	一、<br><br>
+	<button class="btn btn-info.active">时钟</button>
+	<button class="btn btn-info">空</button>
+	<button class="btn btn-info">空</button>
+	<button class="btn btn-info">空</button>
+	<div id='imgtime' class="alert-info" style="display: block;">
+	<span class="box box-re" style="background: #000;border-bottom:none;display: block;">
+	<img src="js005/images/0.png"/>
+	<img src="js005/images/0.png"/>
+	:
+	<img src="js005/images/0.png"/>
+	<img src="js005/images/0.png"/>
+	:
+	<img src="js005/images/0.png"/>
+	<img src="js005/images/0.png"/>
+	</span>
+	</div>
+	<div class="alert-info">2</div>
+	<div class="alert-info">3</div>
+	<div class="alert-info">4</div>
+</div>
+
+<div id="div2" class="box box-re">
+	二、数组排序<br><br>
+	<code>var aArr=[66,35,65,23,33,22,4,7,45,2]</code>
+	<button class="btn btn-info">数组排序</button>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	三、DOM综合应用<br><br>
+	添加：<input type="text" class="form-control" placeholder="姓名"> <input type="text" class="form-control"
+																		placeholder="年龄">
+	<button class="btn btn-info content">添加</button>
+	变色：
+	<button class="btn btn-info content">开启移入变色</button>
+	<br><br>
+
+	<table class="table table-bordered">
+		<thead>
+		<td>ID</td>
+		<td>姓名</td>
+		<td>年龄</td>
+		<td>操作</td>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>33</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>34</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>25</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>16</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>王四</td>
+			<td>44</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>Danny</td>
+			<td>23</td>
+			<td><a href="javascript:;" class="deltr">删除</a></td>
+		</tr>
+		</tbody>
+	</table>
+	<br>
+	搜索：<input type="text" class="form-control" placeholder="姓名">
+	<button class="btn btn-info content">搜索</button>
+	排序：
+	<button class="btn btn-info content">年龄从小排序</button>
+	<br><br>
+	数组里存的是所有tr，排序的时候按照第三个单元格的innerHTML大小排序。最后按照新的顺序重新添加所有tr。
+</div>
+<script>
+	function toDou(n) {
+		if (n < 10) {
+			return '0' + n;
+		}
+		else {
+			return '' + n;
+		}
+	}
+	function tabDiv(oBtn, oDiv) {
+		var i = 0;
+		while (i < oBtn.length) {
+			oBtn[i].index = i;
+			oBtn[i].onclick = function () {
+				var i = 0;
+				while (i < oBtn.length) {
+					oBtn[i].className = 'btn btn-info';
+					oDiv[i].style.display = 'none';
+					i++;
+				}
+				this.className = 'btn btn-info.active';
+				oDiv[this.index].style.display = 'block';
+			}
+			i++;
+		}
+	}
+	function imgTime(oId, oUrl) {
+		var aDiv = document.getElementById(oId);
+		var aImg = aDiv.getElementsByTagName('img');
+		setInterval(tick, 1000);
+		function tick() {
+			var oDate = new Date;
+			for (var i = 0; i < aImg.length; i++) {
+				var str = toDou(oDate.getHours()) + toDou(oDate.getMinutes()) + toDou(oDate.getSeconds());
+				aImg[i].src = oUrl + str.charAt(i) + '.png';
+			}
+		}
+
+		tick();
+	}
+	function getClass(oParent, sClass) {
+		var obj = oParent.getElementsByTagName('*');
+		var arr = [];
+		for (var i = 0; i < obj.length; i++) {
+			if (obj[i].className == sClass) {
+				arr.push(obj[i]);
+			}
+		}
+		return arr;
+	}
+	function delTr(oParent, oThis) {
+		var oldColor = oThis.parentNode.parentNode.style.background;
+		oThis.parentNode.parentNode.setAttribute('style', 'background:red');
+		var yesNo = confirm('是否删除该行？');
+		if (yesNo == true) {
+			oParent.removeChild(oThis.parentNode.parentNode);
+		}
+		else {
+			oThis.parentNode.parentNode.style.background = oldColor;
+		}
+	}
+	function setTrBg(ifObj, oParent) {
+		var oldColor = '';
+
+		function setColor(sColor) {
+			var oldColor2 = oldColor;
+			for (var i = 0; i < oParent.rows.length; i++) {
+				oParent.rows[i].onmouseover = function () {
+					oldColor = this.style.background;
+					if (oldColor != '' && ifObj.className == 'btn btn-info') {
+						this.setAttribute('style', 'background:' + oldColor);
+					}
+					else {
+						this.setAttribute('style', 'background:' + sColor);
+					}
+				}
+				oParent.rows[i].onmouseout = function () {
+					this.setAttribute('style', 'background:' + oldColor);
+				}
+			}
+		}
+
+		if (ifObj.className == 'btn btn-info') {
+			setColor(oldColor);
+		}
+		else {
+			setColor('yellow');
+		}
+
+	}
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button');
+		var aDiv1 = oDiv1.getElementsByTagName('div');
+		tabDiv(aBtn1, aDiv1);
+		imgTime('imgtime', 'js005/images/');
+
+		var oDiv2 = document.getElementById('div2');
+		var aBtn2 = oDiv2.getElementsByTagName('button')[0];
+		aBtn2.onclick = function () {
+			var aArr = [66, 35, 65, 23, 33, 22, 4, 7, 45, 2];
+			alert(aArr.sort(function (n1, n2) {
+				return n1 - n2;
+			}))
+		}
+
+		var oDiv3 = document.getElementById('div3');
+		var aIpt3 = oDiv3.getElementsByTagName('input');
+		var aBtn3 = oDiv3.getElementsByTagName('button');
+		var aTab3 = oDiv3.getElementsByTagName('table')[0];
+		var trId3 = aTab3.tBodies[0].children.length + 1;
+		aBtn3[0].onclick = function () {
+			if (aIpt3[0].value == '' || !isNaN(aIpt3[0].value) || aIpt3[1].value == '' || isNaN(aIpt3[1].value)) {
+				alert('必须输入内容才能添加');
+			}
+			else {
+				var oTr = document.createElement('tr');
+
+				var oTd = document.createElement('td');
+				oTd.innerHTML = trId3++;
+				oTr.appendChild(oTd);
+
+				var oTd = document.createElement('td');
+				oTd.innerHTML = aIpt3[0].value;
+				oTr.appendChild(oTd);
+
+				var oTd = document.createElement('td');
+				oTd.innerHTML = aIpt3[1].value;
+				oTr.appendChild(oTd);
+
+				var oTd = document.createElement('td');
+				oTd.innerHTML = '<a href="javascript:;">删除</a>';
+				var oA = oTd.getElementsByTagName('a')[0];
+				oA.onclick = function () {
+					delTr(aTab3.tBodies[0], this);
+				}
+				oTr.appendChild(oTd);
+
+				aTab3.tBodies[0].appendChild(oTr);
+				if (aBtn3[1].innerHTML == '关闭移入变色') {
+					setTrBg(this, aTab3.tBodies[0]);
+				}
+			}
+		}
+		for (var i = 0; i < getClass(aTab3.tBodies[0], 'deltr').length; i++) {
+			getClass(aTab3.tBodies[0], 'deltr')[i].onclick = function () {
+				delTr(aTab3.tBodies[0], this);
+			}
+		}
+
+		aBtn3[1].onclick = function () {
+			if (this.innerHTML == '开启移入变色') {
+				this.innerHTML = '关闭移入变色';
+				this.className = 'btn btn-danger';
+			}
+			else {
+				this.innerHTML = '开启移入变色';
+				this.className = 'btn btn-info';
+			}
+			setTrBg(this, aTab3.tBodies[0]);
+		}
+
+		aBtn3[2].onclick = function () {
+			for (var i = 0; i < aTab3.tBodies[0].rows.length; i++) {
+				aTab3.tBodies[0].rows[i].removeAttribute('style');
+				var oTxt = aIpt3[2].value.toLowerCase();
+				var oTab = aTab3.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+				var aArr = oTxt.split(' ');
+				for (var j = 0; j < aArr.length; j++) {
+					if (oTab.search(aArr[j]) != -1) {
+						aTab3.tBodies[0].rows[i].setAttribute('style', 'background:yellow');
+					}
+				}
+			}
+		}
+
+		aBtn3[3].onclick = function () {
+			var yesNo = confirm('确定要重新排序？');
+			if (yesNo == true) {
+				var arr = [];
+				for (var i = 0; i < aTab3.tBodies[0].rows.length; i++) {
+					arr.push(aTab3.tBodies[0].rows[i]);
+				}
+				arr.sort(function (tr1, tr2) {
+					var n1 = parseInt(tr1.cells[2].innerHTML);
+					var n2 = parseInt(tr2.cells[2].innerHTML);
+					return n1 - n2;
+				})
+				for (var i = 0; i < arr.length; i++) {
+					aTab3.tBodies[0].appendChild(arr[i]);
+				}
+			}
+		}
+	}
+</script>
+</body>
+</html>

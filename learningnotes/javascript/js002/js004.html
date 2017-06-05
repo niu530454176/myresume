@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<title>JAVAscript练习</title>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re form-inline">
+	1、switch判断练习<br><br>
+	弹出问候 分析：<br>
+	<input type="text" class="form-control" placeholder="姓名"/>
+	<select class="form-control">
+		<option value="0">性别</option>
+		<option value="1">男</option>
+		<option value="2">女</option>
+	</select>
+	<button class="btn btn-info">问候</button>
+	<br>
+</div>
+<div id="div2" class="box box-re form-inline">
+	2、三目运算符练习<br><br>
+	例1、随便输入一个数字，判断是单数还是双数。<br>
+	<input type="text" class="form-control" placeholder="数字"/>
+	<button class="btn btn-info">判断单双</button>
+	<br>
+</div>
+<div id="div3" class="box box-re form-inline">
+	3、break、continue批量改色练习。<br><br>
+	分析：获取所有li，做li的循环，当循环到第二个的时候，执行break或continue。这个循环执行到break以后，就跳出去了，不再循环了，也就是后边的li颜色不会再改了。当执行到continue的时候，跳出当前循环后执行下一个循环。
+	<ul class="list-group">
+		<li class="list-group-item">break、continue练习</li>
+		<li class="list-group-item">break、continue练习</li>
+		<li class="list-group-item">break、continue练习</li>
+		<li class="list-group-item">break、continue练习</li>
+		<li class="list-group-item">break、continue练习</li>
+	</ul>
+	<button class="btn btn-info">break</button>
+	<button class="btn btn-info">continue</button>
+	<button class="btn btn-info">reset</button>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>判断：</b>if、switch、?:（三目运算符）</p>
+	<p><b>循环：</b>while、for</p>
+	<p><b>跳出：</b>break（中断-整个循环中断）、continue（继续-本次循环中断）</p>
+	<p><b>取得select选中值：</b>首先获取select对象，拿到选中项的索引：var
+		index=select.selectedIndex;，selectedIndex代表的是所选中项的index，拿到选中项options的value：select.options[index].value;拿到选中项options的text：select.options[index].text;
+	</p>
+	<p><b>?:：</b>三目运算符（三元），与if一样。if的写法是if(条件){语句1}else{语句2}，三目的写法是：条件?语句1:语句2。</p>
+	<p><b>什么是真、什么是假：</b></p>
+	<p><b>真：true</b>非零数字、非空字符串、非空对象</p>
+	<p><b>假：false</b>数字零、空字符串、空对象、undefined</p>
+</div>
+<script>
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aIpt1 = oDiv1.getElementsByTagName('input')[0];
+		var aSlt1 = oDiv1.getElementsByTagName('select')[0];
+		var aBtn1 = oDiv1.getElementsByTagName('button')[0];
+		aBtn1.onclick = function () {
+			if (!isNaN(aIpt1.value)) {
+				alert('必须输入姓名且不能以数字开头');
+			}
+			else {
+				var name = aIpt1.value;
+				var sex = aSlt1.options[aSlt1.selectedIndex].text;
+				switch (sex) {
+					case '男':
+						alert(name + '先生，你好');
+						break;
+					case '女':
+						alert(name + '女士，你好');
+						break;
+					default:
+						alert(name + '，你好');
+				}
+			}
+			aIpt1.value = '';
+		};
+
+		var oDiv2 = document.getElementById('div2');
+		var aIpt2 = oDiv2.getElementsByTagName('input')[0];
+		var aBtn2 = oDiv2.getElementsByTagName('button')[0];
+		aBtn2.onclick = function () {
+			if (!isNaN(aIpt2.value) && aIpt2.value != '') {
+				aIpt2.value % 2 == 0 ? alert('这是双数') : alert('这是单数');
+			}
+			else {
+				alert('必须输入数字');
+			}
+			aIpt2.value = '';
+		};
+
+		var oDiv3 = document.getElementById('div3');
+		var auLi3 = oDiv3.getElementsByTagName('li');
+		var aBtn3 = oDiv3.getElementsByTagName('button');
+		aBtn3[0].onclick = function () {
+			var i = 0;
+			while (i < auLi3.length) {
+				if (i == 1) {
+					break;
+				}
+				auLi3[i].style.background = 'green';
+				i++;
+			}
+		}
+		aBtn3[1].onclick = function () {
+			for (var i = 0; i < auLi3.length; i++) {
+				if (i == 1) {
+					continue;
+				}
+				auLi3[i].style.background = 'blue';
+			}
+		}
+		aBtn3[2].onclick = function () {
+			for (var i = 0; i < auLi3.length; i++) {
+				auLi3[i].removeAttribute('style')
+			}
+		}
+	}
+</script>
+</body>
+</html>

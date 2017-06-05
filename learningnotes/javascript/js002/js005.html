@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re">
+	1、Json简单用法 Json与数组对比<br><br>
+	例1、用Json定义变量并提取。<br>
+	<code>var json={oDiv1a: 5,oDiv1b: 12,oDiv1c: '15'};</code> 通过json.变量名获取<br>
+	<button class="btn btn-info">Json变量a</button>
+	<button class="btn btn-info">Json变量b</button>
+	<button class="btn btn-info">Json变量c</button>
+	<br><br>
+	例2、用数组定义并提取。<br>
+	<code>var arr=[5,12,15];</code> 通过arr[数字]获取。<br>
+	<button class="btn btn-info">数组0</button>
+	<button class="btn btn-info">数组1</button>
+	<button class="btn btn-info">数组2</button>
+	<br><br>
+	2、Json与数组的循环对比<br><br>
+	例1、数组的循环<br>
+	<button class="btn btn-info">数组循环</button>
+	基于for length
+	<button class="btn btn-info">数组循环</button>
+	基于for in<br><br>
+	例2、Json的循环<br>
+	<button class="btn btn-info">Json循环</button>
+	基于for in<br><br>
+	<span class="text-danger">Json与数组的区别：1、Json的下标是个字符串，数组的下标是个数字。2、数组有length，Json没有length。</span>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>Json：</b>用于存数据</p>
+	<p><b>循环：</b>数组依然用for 0~length的方法，json用for in的方法。</p>
+</div>
+<script>
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button');
+		var json = {a: 5, b: 12, c: 15};
+		var aAry = [5, 12, 15];
+		aBtn1[0].onclick = function () {
+			alert(json.a);
+		};
+		aBtn1[1].onclick = function () {
+			alert(json.b);
+		};
+		aBtn1[2].onclick = function () {
+			alert(json.c);
+		};
+		aBtn1[3].onclick = function () {
+			alert(aAry[0]);
+		};
+		aBtn1[4].onclick = function () {
+			alert(aAry[1]);
+		};
+		aBtn1[5].onclick = function () {
+			alert(aAry[2]);
+		};
+		aBtn1[6].onclick = function () {
+			for (var i = 0; i < aAry.length; i++) {
+				alert('第' + i + '个内容是：' + aAry[i]);
+			}
+		};
+		aBtn1[7].onclick = function () {
+			for (var i in aAry) {
+				alert('第' + i + '个内容是：' + aAry[i]);
+			}
+		};
+		aBtn1[8].onclick = function () {
+			for (var i in json) {
+				alert(i + '的内容是:' + json[i]);
+			}
+		};
+	}
+</script>
+</body>
+</html>

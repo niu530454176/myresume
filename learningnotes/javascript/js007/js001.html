@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1.box-re {
+			position: inherit;
+		}
+
+		#div1 > div {
+			width: 100%;
+			height: 60px;
+			transition: none;
+		}
+
+		.jingguo {
+			float: left;
+			display: inline;
+			padding: 20px;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		.chuxian {
+			float: left;
+			display: inline;
+			padding: 20px;
+			margin-left: 20px;
+			display: none;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		#div1 > div {
+			width: 100%;
+			height: 100px;
+			position: relative;
+		}
+
+		#div1 > div span {
+			width: 100px;
+			height: 100px;
+			background: #efefef;
+			transition: none;
+			line-height: 100px;
+			font-size: 32px;
+			text-align: center;
+			cursor: pointer;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		#div2 {
+			position: inherit;
+		}
+
+		#sidebar {
+			width: 150px;
+			height: 200px;
+			background: blue;
+			position: absolute;
+			top: 500px;
+			left: -150px;
+			display: none;
+			transition: none;
+		}
+
+		#sidebar > span {
+			width: 20px;
+			height: 70px;
+			background: red;
+			position: absolute;
+			right: -20px;
+			top: 70px;
+			line-height: 20px;
+			color: white;
+		}
+
+		#div3 img {
+			filter: alpha(opacity:30);
+			opacity: 0.3;
+			transition: none;
+			margin-right: 20px;
+		}
+
+	</style>
+</head>
+
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0"
+																				   src="../../images/group.png"
+																				   alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	1、运动框架<br><br>
+	<button class="btn btn-info">向右移动一次>>></button>
+	<br><br>
+	<div><span>飘</span></div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、侧边栏<br><br>
+	根据当前位置和目标点，就能推算出速度是正数还是负数。例如：<code>if(aDiv2[0].offsetLeft>=iTarget)</code><br><br>
+	<button class="btn btn-info">展现分享到</button>
+	<br><br>
+	<div id="sidebar"><span>分享到</span></div>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	3、淡入淡出<br><br>
+	<button class="btn btn-info">开启淡入淡出</button>
+	<br><br>
+	<img src="images/face-50.jpg" width="50" height="50" alt="淡入淡出1"/> <img src="images/face-50.jpg" width="50"
+																			height="50" alt="淡入淡出2"/> <img
+	src="images/face-50.jpg" width="50" height="50" alt="淡入淡出3"/>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>运动框架：</b>1、在开始运动式，关闭已有定时器。2、把运动和停止隔开。（if/else）。如果在开始的时候不关闭定时器，就会出现很多个定时器同时打开。if的是到达终点之后要做的事，else是到达终点之前要做的事。这两件事本来就不应该同时发生。所以需要用if/else分隔开。
+	</p>
+	<p><b>通过目标点,计算速度值：</b>在功能一样的情况下，参数越少越好。所以在例2中可以把speed参数去掉。然后通过当前offsetleft的值与itarget的值来判断出speed是正数还是负数。例如：<code>if(aDiv2[0].offsetLeft>=iTarget)</code>
+	</p>
+	<p><b>用变量存储透明度：</b>因为没有一个直接的方法获取到真正的透明度的值，所以需要设定一个变量来替代，例如：<code>var alpha=30;</code>，然后通过这个变量来进行一系列操作，例如可以用它来判断是否小于目标值，如果小于，那么speed就是正数。最后在真正修改透明度的时候需要先修改自定义变量alpha的值，例如：<code>alpha+=speed;</code>，然后再修改style中透明度得值，调用alpha变量即可。例如：<code>obj.style.filter='alpha(opacity:'+alpha+')';</code>
+	</p>
+</div>
+<script>
+
+	var timer1 = null;
+	var timer2 = null;
+	var timer3 = null;
+
+	function startMove(obj, iTarget) {
+		clearInterval(timer2);
+
+		timer2 = setInterval(function () {
+			var speed = 0;
+
+			if (obj.offsetLeft < iTarget) {
+				speed = 10;
+			}
+			else {
+				speed = -10;
+			}
+
+			if (obj.offsetLeft == iTarget) {
+				clearInterval(timer2);
+			}
+			else {
+				obj.style.left = obj.offsetLeft + speed + 'px';
+			}
+		}, 30)
+	}
+
+	var alpha = 30;
+	function showImg(obj, iTarget) {
+		clearInterval(timer3);
+
+		timer3 = setInterval(function () {
+			var speed = 0;
+
+			if (alpha < iTarget) {
+				speed = 10;
+			}
+			else {
+				speed = -10;
+			}
+
+			if (alpha == iTarget) {
+				clearInterval(timer3);
+			}
+			else {
+				alpha += speed;
+				obj.style.filter = 'alpha(opacity:' + alpha + ')';
+				obj.style.opacity = alpha / 100;
+			}
+		}, 100)
+	}
+
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button')[0];
+		var aSpn1 = oDiv1.getElementsByTagName('span')[0];
+
+		aBtn1.onclick = function () {
+			clearInterval(timer1);
+
+			timer1 = setInterval(function () {
+				if (aSpn1.offsetLeft >= aSpn1.parentNode.offsetWidth - aSpn1.offsetWidth) {
+					clearInterval(timer1);
+					aSpn1.style.left = 0;
+				}
+				else {
+					aSpn1.style.left = aSpn1.offsetLeft + 10 + 'px';
+				}
+			}, 30)
+		}
+
+		var oDiv2 = document.getElementById('div2');
+		var aBtn2 = oDiv2.getElementsByTagName('button')[0];
+		aBtn2.onclick = function () {
+			var oSidbar = document.getElementById('sidebar');
+
+			if (this.innerHTML == '展现分享到') {
+				this.innerHTML = '关闭分享到';
+				oSidbar.style.display = 'block';
+			}
+			else {
+				this.innerHTML = '展现分享到';
+				oSidbar.style.display = 'none';
+			}
+
+			oSidbar.onmouseover = function () {
+				startMove(this, 0);
+			}
+			oSidbar.onmouseout = function () {
+				startMove(this, -150);
+			}
+		}
+
+		var oDiv3 = document.getElementById('div3');
+		var aBtn3 = oDiv3.getElementsByTagName('button')[0];
+		var aImg3 = oDiv3.getElementsByTagName('img');
+		aBtn3.onclick = function () {
+			for (var i = 0; i < aImg3.length; i++) {
+				aImg3[i].onmouseover = function () {
+					showImg(this, 100);
+				}
+				aImg3[i].onmouseout = function () {
+					showImg(this, 30);
+				}
+			}
+		}
+	}
+</script>
+</body>
+</html>

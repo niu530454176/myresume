@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1 > div, #div2 > div, #div3 > div {
+			display: none;
+			padding: 0 0 0 40px;
+			margin: 0;
+		}
+
+		.box .btn {
+			border-radius: 0;
+		}
+	</style>
+</head>
+
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re">
+	1、选项卡 鼠标经过变换<br><br>
+	<button type="button" class="btn btn-info.active">栏目一</button>
+	<button type="button" class="btn btn-info">栏目二</button>
+	<button type="button" class="btn btn-info">栏目三</button>
+	<button type="button" class="btn btn-info">栏目四</button>
+	<div class="alert-info" style="display: block;">栏目一的内容<br>栏目一的内容<br>栏目一的内容<br>栏目一的内容</div>
+	<div class="alert-info">栏目二的内容<br>栏目二的内容<br>栏目二的内容<br>栏目二的内容</div>
+	<div class="alert-info">栏目三的内容<br>栏目三的内容<br>栏目三的内容<br>栏目三的内容</div>
+	<div class="alert-info">栏目四的内容<br>栏目四的内容<br>栏目四的内容<br>栏目四的内容</div>
+</div>
+
+<div id="div2" class="box box-re">
+	2、选项卡 鼠标点击变换<br><br>
+	<button type="button" class="btn btn-success.active">栏目一</button>
+	<button type="button" class="btn btn-success">栏目二</button>
+	<button type="button" class="btn btn-success">栏目三</button>
+	<button type="button" class="btn btn-success">栏目四</button>
+	<div class="alert-success" style="display: block;">栏目一的内容<br>栏目一的内容<br>栏目一的内容<br>栏目一的内容</div>
+	<div class="alert-success">栏目二的内容<br>栏目二的内容<br>栏目二的内容<br>栏目二的内容</div>
+	<div class="alert-success">栏目三的内容<br>栏目三的内容<br>栏目三的内容<br>栏目三的内容</div>
+	<div class="alert-success">栏目四的内容<br>栏目四的内容<br>栏目四的内容<br>栏目四的内容</div>
+</div>
+
+<div id="div3" class="box box-re">
+	3、选项卡 鼠标点击变换<br><br>
+	<button type="button" class="btn btn-warning.active">栏目一</button>
+	<button type="button" class="btn btn-warning">栏目二</button>
+	<button type="button" class="btn btn-warning">栏目三</button>
+	<button type="button" class="btn btn-warning">栏目四</button>
+	<div class="alert-warning" style="display: block;">栏目一的内容<br>栏目一的内容<br>栏目一的内容<br>栏目一的内容</div>
+	<div class="alert-warning">栏目二的内容<br>栏目二的内容<br>栏目二的内容<br>栏目二的内容</div>
+	<div class="alert-warning">栏目三的内容<br>栏目三的内容<br>栏目三的内容<br>栏目三的内容</div>
+	<div class="alert-warning">栏目四的内容<br>栏目四的内容<br>栏目四的内容<br>栏目四的内容</div>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>this：</b>当前发生事件的元素</p>
+	<p><b>索引值：</b>需要知道是第几个的时候通过自定义的index属性（标签）定义当前激活的div，例如：aBtn1[i].index=i，在整个循环的开始加入。然后通过this.index来激活，例如：aDiv1[this.index].style。
+	</p>
+</div>
+<script>
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button');
+		var aDiv1 = oDiv1.getElementsByTagName('div');
+		for (var i = 0; i < aBtn1.length; i++) {
+			aBtn1[i].index = i;
+			aBtn1[i].onmouseover = function () {
+				for (var ii = 0; ii < aDiv1.length; ii++) {
+					aBtn1[ii].className = 'btn btn-info';
+					aDiv1[ii].style.display = 'none';
+				}
+				this.className = 'btn btn-info.active';
+				console.log(this.index);
+				aDiv1[this.index].style.display = 'block';
+			}
+		}
+
+		var oDiv2 = document.getElementById('div2');
+		var aBtn2 = oDiv2.getElementsByTagName('button');
+		var aDiv2 = oDiv2.getElementsByTagName('div');
+		for (var i = 0; i < aBtn2.length; i++) {
+			aBtn2[i].index = i;
+			aBtn2[i].onclick = function () {
+				for (var i = 0; i < aBtn2.length; i++) {
+					aBtn2[i].className = 'btn btn-success';
+					aDiv2[i].style.display = 'none';
+				}
+				this.className = 'btn btn-success.active';
+				aDiv2[this.index].style.display = 'block';
+			}
+		}
+
+		var oDiv3 = document.getElementById('div3');
+		var aBtn3 = oDiv3.getElementsByTagName('button');
+		var aDiv3 = oDiv3.getElementsByTagName('div');
+		var i = 0;
+		while (i < aBtn3.length) {
+			aBtn3[i].index = i;
+			aBtn3[i].onclick = function () {
+				var i = 0;
+				while (i < aBtn3.length) {
+					aBtn3[i].className = 'btn btn-warning';
+					aDiv3[i].style.display = 'none';
+					i++;
+				}
+				this.className = 'btn btn-warning.active';
+				aDiv3[this.index].style.display = 'block';
+			};
+			i++;
+		}
+	}
+</script>
+</body>
+</html>

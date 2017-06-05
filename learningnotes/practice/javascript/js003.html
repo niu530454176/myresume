@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1.box-re, #div2.box-re, #div3.box-re {
+			position: inherit;
+		}
+
+		#div1 > div {
+			width: 100%;
+			height: 60px;
+			transition: none;
+		}
+
+		.jingguo {
+			float: left;
+			display: inline;
+			padding: 20px;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		.chuxian {
+			float: left;
+			display: inline;
+			padding: 20px;
+			margin-left: 20px;
+			display: none;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		#div2 > div {
+			width: 100%;
+			height: 100px;
+			position: relative;
+		}
+
+		#div2 > div span {
+			width: 100px;
+			height: 100px;
+			background: #efefef;
+			transition: none;
+			line-height: 100px;
+			font-size: 32px;
+			text-align: center;
+			cursor: pointer;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		#div3 > div {
+			height: 100px;
+			position: relative;
+			overflow: hidden;
+			transition: none;
+		}
+
+		#div3 ul {
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			left: 0;
+			top: 0;
+			transition: none;
+		}
+
+		#div3 li {
+			float: left;
+			list-style: none;
+			margin: 0 10px 0 0;
+			padding: 0;
+			width: 100px;
+			height: 100px;
+			border: 0px double red;
+			background: #efefef;
+			line-height: 100px;
+			font-size: 32px;
+			text-align: center;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re">
+	1、延时提示框<br><br>
+	<div><span class="jingguo">鼠标经过触发二级</span><span class="chuxian">鼠标离开关闭二级</span></div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、匀速滚动<br><br>
+	<button class='btn btn-info'>向右移动</button>
+	<button class="btn btn-info">向左滚动</button>
+	<br><br>
+	<div><span>飘</span></div>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	3、无缝滚动<br><br>
+	<select class="form-control">
+		<option value="0">速度</option>
+		<option value="1">快</option>
+		<option value="2">慢</option>
+	</select>
+	<button class="btn btn-info">向左滚动</button>
+	<button class="btn btn-info">向右滚动</button>
+	<br><br>
+	<div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+</div>
+<script>
+	function getStyle(obj, attr) {
+		if (obj.currentStyle) {
+			return obj.currentStyle[attr];
+		}
+		else {
+			return getComputedStyle(obj, false)[attr];
+		}
+	}
+
+	var time1 = null;
+	var time2 = null;
+	var time3 = null;
+
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aSpn1 = oDiv1.getElementsByTagName('span');
+		aSpn1[0].onmouseover = aSpn1[1].onmouseover = function () {
+			clearTimeout(time1);
+			aSpn1[1].style.display = 'block';
+		}
+		aSpn1[0].onmouseout = aSpn1[1].onmouseout = function () {
+			time1 = setTimeout(function () {
+				aSpn1[1].style.display = 'none';
+			}, 500)
+		}
+
+
+		var oDiv2 = document.getElementById('div2');
+		var aBtn2 = oDiv2.getElementsByTagName('button');
+		var aSpn2 = oDiv2.getElementsByTagName('span')[0];
+
+		function startMove2(iTarget) {
+			var speed2 = 0;
+			speed2 = aSpn2.offsetLeft < iTarget ? 10 : -10;
+			clearInterval(time2);
+			time2 = setInterval(function () {
+				if (aSpn2.offsetLeft != iTarget) {
+					aSpn2.style.left = aSpn2.offsetLeft + speed2 + 'px';
+				}
+				else {
+					clearInterval(time2);
+				}
+			}, 30)
+		}
+
+		aBtn2[0].onclick = function () {
+			startMove2(aSpn2.parentNode.offsetWidth - aSpn2.offsetWidth);
+		}
+		aBtn2[1].onclick = function () {
+			startMove2(0)
+		}
+		aSpn2.onclick = function () {
+			this.style.left = 0;
+		}
+
+		var oDiv3 = document.getElementById('div3');
+		var aBtn3 = oDiv3.getElementsByTagName('button');
+		var aSlt3 = oDiv3.getElementsByTagName('select')[0];
+		var aDiv3 = oDiv3.getElementsByTagName('div')[0];
+		var aUl3 = oDiv3.getElementsByTagName('ul')[0];
+		var aLi3 = oDiv3.getElementsByTagName('li');
+		var speed3 = 0;
+
+		function selectSpeed3() {
+			var speedN = 0;
+			var index = aSlt3.selectedIndex;
+			var spVal = aSlt3.options[index].value;
+			switch (spVal) {
+				case '1':
+					speedN = 5;
+					break;
+				case '2':
+					speedN = 1;
+					break;
+				default:
+					speedN = 0;
+			}
+			return speedN;
+		}
+
+		aLi3Width = aLi3[0].offsetWidth + parseInt(getStyle(aLi3[0], 'marginRight'));
+		aUl3.innerHTML = aUl3.innerHTML + aUl3.innerHTML;
+		aUl3.style.width = aLi3Width * aLi3.length + 'px';
+		aDiv3.style.width = aLi3Width * aLi3.length / 2 + 'px';
+		time3 = setInterval(startMove3, 30)
+		aBtn3[0].onclick = function () {
+			speed3 = -selectSpeed3();
+		}
+		aBtn3[1].onclick = function () {
+			speed3 = selectSpeed3();
+		}
+		aDiv3.onmouseover = function () {
+			clearInterval(time3);
+		}
+		aDiv3.onmouseout = function () {
+			time3 = setInterval(startMove3, 30)
+		}
+
+		function startMove3() {
+			aUl3.style.left = aUl3.offsetLeft + speed3 + 'px';
+			if (aUl3.offsetLeft < -aLi3Width * aLi3.length / 2) {
+				aUl3.style.left = 0;
+			}
+			else if (aUl3.offsetLeft > 0) {
+				aUl3.style.left = -aLi3Width * aLi3.length / 2 + 'px';
+			}
+		}
+	}
+</script>
+</body>
+</html>

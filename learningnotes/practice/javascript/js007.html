@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1.box-re {
+			position: inherit;
+		}
+
+		#div1 > div {
+			width: 100%;
+			height: 60px;
+			transition: none;
+		}
+
+		.jingguo {
+			float: left;
+			display: inline;
+			padding: 20px;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		.chuxian {
+			float: left;
+			display: inline;
+			padding: 20px;
+			margin-left: 20px;
+			display: none;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		#div1 > div {
+			width: 100%;
+			height: 100px;
+			position: relative;
+		}
+
+		#div1 > div span {
+			width: 100px;
+			height: 100px;
+			background: #efefef;
+			transition: none;
+			line-height: 100px;
+			font-size: 32px;
+			text-align: center;
+			cursor: pointer;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		#div2 {
+			position: inherit;
+		}
+
+		#sidebar {
+			width: 150px;
+			height: 200px;
+			background: blue;
+			position: absolute;
+			top: 500px;
+			left: -150px;
+			display: none;
+			transition: none;
+		}
+
+		#sidebar > span {
+			width: 20px;
+			height: 70px;
+			background: red;
+			position: absolute;
+			right: -20px;
+			top: 70px;
+			line-height: 20px;
+			color: white;
+		}
+
+		#div3 img {
+			filter: alpha(opacity:30);
+			opacity: 0.3;
+			transition: none;
+			margin-right: 20px;
+		}
+
+		#div4.box-re {
+			position: inherit;
+		}
+
+		#div4 > div {
+			width: 100%;
+			height: 60px;
+			transition: none;
+		}
+
+		.jingguo {
+			float: left;
+			display: inline;
+			padding: 20px;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		.chuxian {
+			float: left;
+			display: inline;
+			padding: 20px;
+			margin-left: 20px;
+			display: none;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		#div4 > div {
+			width: 100%;
+			height: 100px;
+			position: relative;
+		}
+
+		#div4 > div span {
+			width: 100px;
+			height: 100px;
+			background: #efefef;
+			transition: none;
+			line-height: 50px;
+			text-align: center;
+			cursor: pointer;
+			display: block;
+			position: absolute;
+			left: 0px;
+			top: 0;
+		}
+
+		#div4 > div > div {
+			width: 1px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			left: 500px;
+			top: 0;
+		}
+
+		#scrollTop {
+			width: 80px;
+			height: 300px;
+			background: yellow;
+			position: absolute;
+			right: 0;
+			bottom: 0px;
+			transition: none;
+			display: none;
+		}
+
+		#scrollTop button {
+			border-radius: 0;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		}
+	</style>
+</head>
+<BODY>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0"
+																				   src="../../images/group.png"
+																				   alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re form-inline">
+	1、运动框架<br><br>
+	<button class="btn btn-info">向右移动</button>
+	<br><br>
+	<div><span class="show">飘</span></div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、侧边栏<br><br>
+	根据当前位置和目标点，就能推算出速度是正数还是负数。<br><br>
+	<button class="btn btn-info">展现分享到</button>
+	<br><br>
+	<div id="sidebar"><span>分享到</span></div>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	3、淡入淡出<br><br>
+	<button class="btn btn-info">开启淡入淡出</button>
+	<br><br>
+	<img width="50" height="50" src="../../images/face-50.jpg" alt="淡入淡出1"/> <img width="50" height="50"
+																				  src="../../images/face-50.jpg"
+																				  alt="淡入淡出2"/> <img width="50"
+																									 height="50"
+																									 src="../../images/face-50.jpg"
+																									 alt="淡入淡出3"/>
+</div>
+
+<div id="div4" class="box box-re form-inline">
+	4、缓冲运动与匀速运动的对比<br><br>
+	<button class="btn btn-info">匀速运动</button>
+	<button class="btn btn-info">缓冲运动</button>
+	<button class="btn btn-info">向上取整0.5</button>
+	<button class="btn btn-info">向下取整0.5</button>
+	<button class="btn btn-info">-7/7的绝对值</button>
+	<br><br>
+	<div><span>速度/距离<br>0/0</span>
+		<div></div>
+	</div>
+</div>
+
+<div id="div5" class="box box-re form-inline">
+	5、浮动层<br><br>
+	<button class="btn btn-info">展现底部浮动层</button>
+	<button class="btn btn-info">展现中间浮动层</button>
+	<br><br>
+</div>
+<div id="scrollTop">浮动层</div>
+<script>
+	var Time1, Time2, Time3, Time4, Time5, Time6, Time7 = null;
+	var alpha = 30;
+
+	function getClass(aParent, sClass) {
+		var obj = aParent.getElementsByTagName('*');
+		var arr = [];
+		for (var i = 0; i < obj.length; i++) {
+			if (obj.className == sClass) {
+				arr.push(obj[i]);
+			}
+		}
+		return arr;
+	}
+
+	function fnSidebar(obj, iTarget) {
+		var speed = 0;
+		clearInterval(Time2);
+		Time2 = setInterval(function () {
+			if (obj.offsetLeft < iTarget) {
+				speed = 10;
+			}
+			else {
+				speed = -10;
+			}
+			if (obj.offsetLeft == iTarget) {
+				clearInterval(Time2);
+			}
+			else {
+				obj.style.left = obj.offsetLeft + speed + 'px';
+			}
+		}, 30)
+	}
+
+	function fnStartAlpha(obj, iTarget) {
+		var speed = 0;
+		clearInterval(Time3);
+		Time3 = setInterval(function () {
+			speed = alpha < iTarget ? 10 : -10;
+			if (alpha == iTarget) {
+				clearInterval(Time3);
+			}
+			else {
+				alpha += speed;
+				//filter:alpha(opacity:30); opacity:0.3;
+				obj.style.filter = 'alpha(opacity:' + alpha + ')';
+				obj.style.opacity = alpha / 100;
+			}
+		}, 30)
+	}
+	function fnOnScroll(obj, iTarget) {
+		var speed = 0;
+		clearInterval(Time6);
+		Time6 = setInterval(function () {
+			speed = (iTarget - obj.offsetTop) / 10;
+			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+			if (obj.offsetTop == iTarget) {
+				clearInterval(Time6);
+			}
+			else {
+				obj.style.top = obj.offsetTop + speed + 'px';
+			}
+		}, 30);
+	}
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button')[0];
+		var aSpn1 = oDiv1.getElementsByTagName('span')[0];
+		aBtn1.onclick = function () {
+			if (this.innerHTML == '向右移动') {
+				this.innerHTML = '向左移动';
+				this.className = 'btn btn-danger';
+				fnStart(aSpn1, aSpn1.parentNode.offsetWidth - aSpn1.offsetWidth);
+			}
+			else {
+				this.innerHTML = '向右移动';
+				this.className = 'btn btn-info';
+				fnStart(aSpn1, 0);
+			}
+			function fnStart(obj, iTarget) {
+				var speed = iTarget > 0 ? 21 : -21;
+				clearInterval(Time1);
+				Time1 = setInterval(function () {
+					if (obj.offsetLeft == iTarget || Math.abs(iTarget - aSpn1.offsetLeft) <= Math.abs(speed)) {
+						clearInterval(Time1);
+						obj.style.left = iTarget + 'px';
+					}
+					else {
+						obj.style.left = obj.offsetLeft + speed + 'px';
+					}
+				}, 30)
+
+			}
+
+			var oDiv2 = document.getElementById('div2');
+			var aBtn2 = oDiv2.getElementsByTagName('button')[0];
+			var oSidebar = document.getElementById('sidebar');
+			aBtn2.onclick = function () {
+				if (this.innerHTML == '展现分享到') {
+					this.innerHTML = '隐藏分享到';
+					this.className = 'btn btn-danger';
+					oSidebar.style.display = 'block';
+
+					oSidebar.onmouseover = function () {
+						fnSidebar(oSidebar, 0);
+					}
+					oSidebar.onmouseout = function () {
+						fnSidebar(oSidebar, -150);
+					}
+				}
+				else {
+					this.innerHTML = '展现分享到';
+					this.className = 'btn btn-info';
+					oSidebar.style.display = 'none';
+				}
+			}
+
+			var oDiv3 = document.getElementById('div3');
+			var aBtn3 = oDiv3.getElementsByTagName('button')[0];
+			var aImg3 = oDiv3.getElementsByTagName('img');
+			aBtn3.onclick = function () {
+				for (var i = 0; i < aImg3.length; i++) {
+					aImg3[i].onmouseover = function () {
+						fnStartAlpha(this, 100);
+					}
+					aImg3[i].onmouseout = function () {
+						fnStartAlpha(this, 30);
+					}
+				}
+			}
+
+			var oDiv4 = document.getElementById('div4');
+			var aBtn4 = oDiv4.getElementsByTagName('button');
+			var aSpn4 = oDiv4.getElementsByTagName('span')[0];
+			aSpn4.onclick = function () {
+				this.style.left = 0;
+			}
+			aBtn4[0].onclick = function () {
+				aSpn4.style.left = 0;
+				var iTarget = 500;
+				var speed = 7;
+				clearInterval(Time4);
+				Time4 = setInterval(function () {
+					speed = aSpn4.offsetLeft > iTarget ? -7 : 7;
+					if (aSpn4.offsetLeft == iTarget || Math.abs(iTarget - aSpn4.offsetLeft) < speed) {
+						clearInterval(Time4);
+						aSpn4.style.left = iTarget + 'px';
+					}
+					else {
+						aSpn4.style.left = aSpn4.offsetLeft + speed + 'px';
+						aSpn4.innerHTML = '速度/距离<br>' + speed + '/' + aSpn4.offsetLeft;
+					}
+				}, 30)
+			}
+			aBtn4[1].onclick = function () {
+				aSpn4.style.left = 0;
+				var speed = 0;
+				clearInterval(Time5);
+				Time5 = setInterval(function () {
+					speed = (500 - aSpn4.offsetLeft) / 10;
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+					aSpn4.style.left = aSpn4.offsetLeft + speed + 'px';
+					aSpn4.innerHTML = '速度/距离<br>' + speed + '/' + aSpn4.offsetLeft;
+				}, 30)
+			}
+			aBtn4[2].onclick = function () {
+				alert(Math.ceil(0.5));
+			}
+			aBtn4[3].onclick = function () {
+				alert(Math.floor(0.5));
+			}
+			aBtn4[4].onclick = function () {
+				alert(Math.abs(-7) + '/' + Math.abs(7));
+			}
+
+			var oDiv5 = document.getElementById('div5');
+			var aBtn5 = oDiv5.getElementsByTagName('button');
+			var oSTop = document.getElementById('scrollTop');
+			aBtn5[0].onclick = function () {
+				if (this.innerHTML == '展现底部浮动层') {
+					this.innerHTML = '隐藏底部浮动层';
+					this.className = 'btn btn-danger';
+					oSTop.style.display = 'block';
+
+					window.onresize = window.onscroll = function () {
+						var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+						fnOnScroll(oSTop, scrollTop + document.documentElement.clientHeight - oSTop.offsetHeight);
+					}
+				}
+				else {
+					this.innerHTML = '展现底部浮动层';
+					this.className = 'btn btn-info';
+					oSTop.style.display = 'none';
+
+					window.onresize = window.onscroll = function () {
+					};
+				}
+			}
+
+			aBtn5[1].onclick = function () {
+				if (this.innerHTML == '展现中间浮动层') {
+					this.innerHTML = '隐藏中间浮动层';
+					this.className = 'btn btn-danger';
+					oSTop.style.display = 'block';
+					window.onresize = window.onscroll = function () {
+						var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+						fnOnScroll(oSTop, parseInt(scrollTop + (document.documentElement.clientHeight - oSTop.offsetHeight) / 2));
+					}
+				}
+				else {
+					this.innerHTML = '展现中间浮动层';
+					this.className = 'btn btn-info';
+					oSTop.style.display = 'none';
+					window.onresize = window.onscroll = function () {
+					};
+				}
+			}
+		};
+</script>
+</BODY>
+</HTML>

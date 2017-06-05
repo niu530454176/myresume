@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		ul {
+			display: none;
+		}
+
+		li {
+			transition: none;
+		}
+
+		li a {
+			float: right;
+		}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0"
+																				   src="../../images/group.png"
+																				   alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	1、创建元素 <code>createElement & appendChild</code><br><br>
+	<div class="box box-re">
+		例1：创建li<br><br>
+		<ul class="list-group">
+		</ul>
+		<button class="btn btn-info">创建li</button>
+	</div>
+	<div class="box box-re">
+		例2：创建自定义内容的li<br><br>
+		<ul class="list-group">
+		</ul>
+		<input class="form-control" type="text" placeholder="可以自定义内容"/>
+		<button class="btn btn-info">创建li</button>
+	</div>
+</div>
+<div id="div2" class="box box-re form-inline">
+	2、插入元素 <code>createElement & insertBefore</code><br><br>
+	<div class="box box-re">
+		<input class="form-control" type="text" placeholder="可以自定义内容"/>
+		<button class="btn btn-info">插入li</button>
+		<ul class="list-group">
+		</ul>
+	</div>
+</div>
+<div id="div3" class="box box-re form-inline">
+	3、删除元素 <code>removeChild</code><br><br>
+	<div class="box box-re">
+		<input class="form-control" type="text" placeholder="可以自定义内容"/>
+		<button class="btn btn-info">插入li</button>
+		<ul class="list-group">
+		</ul>
+	</div>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>创建元素：</b><code>var 子节点=document.createElement('li')</code> 创建子节点变量 等于需要创建什么元素
+		那么参数就是什么。在创建完成之后系统并不知道把创建出的元素放到哪个父级下，所以需要指派：<code>父级.appendChild(子节点)</code>
+		这一步是把li作为子节点添加给父级的<strong>末尾</strong>。appendChild就是给元素添加父级的。</p>
+	<p><b>插入元素：</b><code>父级.insertBefore(子节点,插入在谁之前（原有节点）)</code>
+		需要先判断ul中是否包含第0个li，如果包含才使用insertBefore，如果不包括则需要使用appendChild。
+		例如可以在li的第0个之前插入，那么刚插入的永远都是第0个，也就是在父级的<strong>开始</strong>插入的。</p>
+	<p><b>删除元素：</b><code>父级.removeChild(this.parentNode)</code> 在父级下删除this的父级 也就是删除首父级的子级。</p>
+</div>
+<script>
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button');
+		var aIpt1 = oDiv1.getElementsByTagName('input');
+		var aUl1 = oDiv1.getElementsByTagName('ul');
+		aBtn1[0].onclick = function () {
+			var oLi = document.createElement('li');
+			aUl1[0].appendChild(oLi);
+			aUl1[0].style.display = 'block';
+			var aLi = aUl1[0].getElementsByTagName('li');
+			for (var i = 0; i < aLi.length; i++) {
+				oLi.innerHTML = '创建成功，这是第' + i + '个li';
+				if (i % 2 == 0) {
+					aLi[i].className = 'list-group-item';
+				}
+				else {
+					aLi[i].className = 'list-group-item list-group-item-info';
+				}
+			}
+		}
+
+		aBtn1[1].onclick = function () {
+			if (aIpt1[0].value == '') {
+				alert('必须输入内容才能创建li');
+			}
+			else {
+				var oLi = document.createElement('li');
+				aUl1[1].style.display = 'block';
+				aUl1[1].appendChild(oLi);
+				var aLi = aUl1[1].getElementsByTagName('li');
+				for (var i = 0; i < aLi.length; i++) {
+					oLi.innerHTML = '创建成功，这是第' + i + '个li ' + aIpt1[0].value;
+					if (i % 2 == 0) {
+						aLi[i].className = 'list-group-item';
+					}
+					else {
+						aLi[i].className = 'list-group-item list-group-item-info';
+					}
+				}
+				aIpt1[0].value = '';
+			}
+		}
+
+		var oDiv2 = document.getElementById('div2');
+		var aBtn2 = oDiv2.getElementsByTagName('button')[0];
+		var aIpt2 = oDiv2.getElementsByTagName('input')[0];
+		var aUl2 = oDiv2.getElementsByTagName('ul')[0];
+		aBtn2.onclick = function () {
+			if (aIpt2.value == '') {
+				alert('必须输入内容才能创建li');
+			}
+			else {
+				var oLi = document.createElement('li');
+				aUl2.style.display = 'block';
+				aUl2.style.marginTop = '20px';
+				aUl2.style.marginBottom = '0px';
+				if (aUl2.children.length > 0) {
+					aUl2.insertBefore(oLi, aUl2.children[0]);
+				}
+				else {
+					aUl2.appendChild(oLi);
+				}
+				for (var i = 0; i < aUl2.children.length; i++) {
+					oLi.innerHTML = '创建成功，这是第' + i + '个li ' + aIpt2.value;
+					if (i % 2 == 0) {
+						oLi.className = 'list-group-item list-group-item-info'
+					}
+					else {
+						oLi.className = 'list-group-item';
+					}
+				}
+				aIpt2.value = '';
+			}
+		}
+
+		var oDiv3 = document.getElementById('div3');
+		var aBtn3 = oDiv3.getElementsByTagName('button')[0];
+		var aIpt3 = oDiv3.getElementsByTagName('input')[0];
+		var aUl3 = oDiv3.getElementsByTagName('ul')[0];
+		aUl3.style.display = 'block';
+		aUl3.style.marginTop = '20px';
+		aUl3.style.marginBottom = '0px';
+		aBtn3.onclick = function () {
+			var oLi = document.createElement('li');
+			var sSc = '<a href="javascript:;">删除</a>';
+			oLi.innerHTML = sSc;
+			var aA = aUl3.getElementsByTagName('a');
+			if (aUl3.children.length > 0) {
+				aUl3.insertBefore(oLi, aUl3.children[0]);
+			}
+			else {
+				aUl3.appendChild(oLi);
+			}
+			for (var i = 0; i < aUl3.children.length; i++) {
+				oLi.innerHTML = '创建完成，这是第' + i + '个li' + aIpt3.value + sSc;
+				if (i % 2 == 0) {
+					aUl3.children[i].className = 'list-group-item list-group-item-info';
+				}
+				else {
+					aUl3.children[i].className = 'list-group-item';
+				}
+			}
+			for (var i = 0; i < aA.length; i++) {
+				if (aA[i].innerHTML == '删除') {
+					aA[i].onclick = function () {
+						aUl3.removeChild(this.parentNode)
+					}
+				}
+			}
+		}
+	}
+</script>
+</body>
+</html>

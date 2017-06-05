@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0"
+																				   src="../../images/group.png"
+																				   alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div class="box box-re form-inline">
+	1、innerHTML的基本使用<br><br>
+	<code>d2.innerHTML='提交后在这里显示：'+i1.value;</code><br>
+	<span class="text-warning">innerHTML的值等于value的值。</span>
+	<div class="box box-re">
+		<div class="form-group">
+			<label class="sr-only">在这里输入文字</label>
+			<input type="text" class="form-control" id="input1" placeholder="在这里输入文字">
+		</div>
+		<button type="submit" class="btn btn-default" id="button1">提交</button>
+	</div>
+	<div id="div1" class="box box-re">提交后在这里显示：</div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、innerHTML、字符串、判断的基本使用<br><br>
+	<div class="box box-re">
+		<div class="form-group">
+			<label class="sr-only">在这里输入文字</label>
+			<input type="text" class="form-control" placeholder="在这里输入文字"> + <input type="text" class="form-control"
+																					placeholder="在这里输入文字">
+		</div>
+		<button type="submit" class="btn btn-default" id="button2">提交</button>
+	</div>
+	<div class="box box-re">提交后在这里显示：</div>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	3、数组输出练习<br><br>
+	<div class="box box-re">
+		已知数组内容：1、这是第一句，2、这是第二句，3、这是第三句，4、这是第四句。<br><br>
+		<button type="submit" class="btn btn-default">提取1</button>
+		<button type="submit" class="btn btn-default">提取2</button>
+		<button type="submit" class="btn btn-default">提取3</button>
+		<button type="submit" class="btn btn-default">提取4</button>
+		<button type="submit" class="btn btn-info" id="button3">全部弹出提取</button>
+	</div>
+	<div id="div5" class="box box-re">提取后在这里显示：<span class="text-danger">请点击上面的4各按钮输入</span></div>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>innerHTML：</b>某标签中的HTML</p>
+	<p><b>字符串拼接：</b>用+可以把字符串连在一起。</p>
+</div>
+<script>
+	window.onload = function () {
+		var aBtn1 = document.getElementById('button1');
+		aBtn1.onclick = function () {
+			var aIpt1 = document.getElementById('input1');
+			var oDiv1 = document.getElementById('div1');
+			oDiv1.innerHTML = oDiv1.innerHTML + '<span class="text-danger">' + aIpt1.value + '</span>';
+		}
+
+		var aBtn2 = document.getElementById('button2');
+		aBtn2.onclick = function () {
+			var aIpt2 = document.getElementById('div2').getElementsByTagName('input');
+			var text2 = document.getElementById('div2').getElementsByTagName('div')[2]
+			text2.innerHTML = text2.innerHTML + '<span class="text-danger">' + aIpt2[0].value + aIpt2[1].value + '</span>';
+		}
+
+		var aBtn3 = document.getElementById('div3').getElementsByTagName('button');
+		var aArr3 = ['这是第一句', '这是第二句', '这是第三句', '这是第四句'];
+		var oTxt3 = document.getElementById('div3').getElementsByTagName('span')[0];
+		var i = 0;
+		while (i < aBtn3.length) {
+			aBtn3[i].index = i;
+			aBtn3[i].onclick = function () {
+				oTxt3.innerHTML = aArr3[this.index];
+			}
+			aBtn3[4].onclick = function () {
+				for (var i = 0; i < aBtn3.length - 1; i++) {
+					alert(aArr3[i]);
+				}
+			};
+			i++;
+		}
+	}
+</script>
+</body>
+</html>

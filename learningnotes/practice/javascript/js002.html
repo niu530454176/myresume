@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1 > table {
+			margin: 0;
+		}
+
+		#div2 > div {
+			display: none;
+			padding: 20px;
+			margin: 0;
+		}
+
+		#div2 > button {
+			border-radius: 0;
+		}
+
+		#div2 > button.btn.btn-info\2e active {
+			background: #d9edf7
+		}
+	</style>
+</head>
+
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0"
+																				   src="../../images/group.png"
+																				   alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	一、表格 隔行变色／移入变色练习<br><br>
+	<button type="button" class="btn btn-info">开启隔行变色</button>
+	<button type="button" class="btn btn-info">开启移入变色</button>
+	<br><br>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>33</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>44</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>55</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>66</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Danny</td>
+			<td>33</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div id="div2" class="box box-re form-inline">
+	二、选项卡练习<br><br>
+	<button type="button" class="btn btn-info.active">栏目一</button>
+	<button type="button" class="btn btn-info">栏目二</button>
+	<button type="button" class="btn btn-info">栏目三</button>
+	<button type="button" class="btn btn-info">栏目四</button>
+	<div class="alert-info" style="display: block">栏目一的内容<br>栏目一的内容<br>栏目一的内容<br>栏目一的内容</div>
+	<div class="alert-info">栏目二的内容<br>栏目二的内容<br>栏目二的内容<br>栏目二的内容</div>
+	<div class="alert-info">栏目三的内容<br>栏目三的内容<br>栏目三的内容<br>栏目三的内容</div>
+	<div class="alert-info">栏目四的内容<br>栏目四的内容<br>栏目四的内容<br>栏目四的内容</div>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	三、数组练习<br><br>
+	<button type="button" class="btn btn-default">弹出一</button>
+	<button type="button" class="btn btn-default">弹出二</button>
+	<button type="button" class="btn btn-default">弹出三</button>
+	<button type="button" class="btn btn-default">弹出四</button>
+	<button type="button" class="btn btn-info">全部弹出</button>
+</div>
+
+<div id="div4" class="box box-re form-inline">
+	四、switch判断练习<br><br>
+	弹出问候 分析：<br>
+	<input type="text" class="form-control" placeholder="姓名"/>
+	<select class="form-control">
+		<option value="0">性别</option>
+		<option value="1">男</option>
+		<option value="2">女</option>
+	</select>
+	<button class="btn btn-info">问候</button>
+	<br>
+</div>
+<script>
+	function setTrCorol(obj, color) {
+		var i = 0;
+		while (i < obj.rows.length) {
+			if (i % 2 == 0) {
+				obj.rows[i].style.background = color;
+			}
+			else {
+
+			}
+			i++;
+		}
+	}
+
+	function mouseroverColor(obj, color) {
+		for (var i = 0; i < obj.rows.length; i++) {
+			var oldColor = null;
+			if (color == null) {
+				obj.rows[i].onmouseover = function () {
+					null;
+				}
+				obj.rows[i].onmouseout = function () {
+					null;
+				}
+			}
+			else {
+				obj.rows[i].onmouseover = function () {
+					oldColor = this.style.background;
+					this.style.background = color;
+				}
+				obj.rows[i].onmouseout = function () {
+					this.style.background = oldColor;
+				}
+			}
+		}
+	}
+
+	function startTab(oBtn, oDiv, oClassA, oClassB) {
+		for (var i = 0; i < oBtn.length; i++) {
+			oBtn[i].index = i;
+			oBtn[i].onclick = function () {
+				for (var i = 0; i < oBtn.length; i++) {
+					oBtn[i].className = oClassA;
+					oDiv[i].style.display = 'none';
+				}
+				this.className = oClassB;
+				oDiv[this.index].style.display = 'block';
+			}
+		}
+	}
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button');
+		var aTab1 = oDiv1.getElementsByTagName('table')[0];
+
+		aBtn1[0].onclick = function () {
+			if (this.innerHTML == '开启隔行变色') {
+				this.innerHTML = '关闭隔行变色';
+				this.className = 'btn btn-danger';
+				setTrCorol(aTab1.tBodies[0], 'yellow');
+			}
+			else {
+				this.innerHTML = '开启隔行变色';
+				this.className = 'btn btn-info';
+				setTrCorol(aTab1.tBodies[0], null);
+			}
+		}
+		aBtn1[1].onclick = function () {
+			if (this.innerHTML == '开启移入变色') {
+				this.innerHTML = '关闭移入变色';
+				this.className = 'btn btn-danger';
+				mouseroverColor(aTab1.tBodies[0], 'red');
+			}
+			else {
+				this.innerHTML = '开启移入变色';
+				this.className = 'btn btn-info';
+				mouseroverColor(aTab1.tBodies[0], null);
+			}
+		}
+
+		var oDiv2 = document.getElementById('div2');
+		var aBtn2 = oDiv2.getElementsByTagName('button');
+		var aDiv2 = oDiv2.getElementsByTagName('div');
+
+		startTab(aBtn2, aDiv2, 'btn btn-info', 'btn btn-info.active');
+
+		var oDiv3 = document.getElementById('div3');
+		var aBtn3 = oDiv3.getElementsByTagName('button');
+		var aArr3 = ['这是第一句', '这是第二句', '这是第三句', '这是第四句'];
+		for (var i = 0; i < aBtn3.length; i++) {
+			aBtn3[i].index = i;
+			aBtn3[i].onclick = function () {
+				alert(aArr3[this.index]);
+			}
+			if (i == 4) {
+				aBtn3[i].onclick = function () {
+					for (var i = 0; i < aBtn3.length - 1; i++) {
+						alert(aArr3[i]);
+					}
+				}
+			}
+		}
+
+		var oDiv4 = document.getElementById('div4');
+		var aBtn4 = oDiv4.getElementsByTagName('button')[0];
+		var aIpt4 = oDiv4.getElementsByTagName('input')[0];
+		var aSlt4 = oDiv4.getElementsByTagName('select')[0];
+		aBtn4.onclick = function () {
+			if (aIpt4.value == '' || !isNaN(aIpt4.value)) {
+				alert('必须输入姓名才能谈出');
+			}
+			else {
+				var name = aIpt4.value;
+				var sexy = aSlt4.options[aSlt4.selectedIndex].innerHTML;
+				switch (sexy) {
+					case '男':
+						alert(name + '先生，你好');
+						break;
+					case '女':
+						alert(name + '女士，你好');
+						break;
+					default:
+						alert(name + '你好');
+				}
+			}
+		}
+	}
+</script>
+</body>
+</html>

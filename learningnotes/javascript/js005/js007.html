@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		.table{margin-bottom: 0;}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	1、表格搜索：基础版本-字符串比较<br><br>
+	姓名：<input type="text" class="form-control" placeholder="必填" /> <button class="btn btn-info">逐行搜索</button><br><br>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>33</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>44</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>55</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>66</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Danny</td>
+			<td>33</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、表格搜索：忽略大小写-大小写转换<br><br>
+	姓名：<input type="text" class="form-control" placeholder="必填" /> <button class="btn btn-info">逐行搜索</button><br><br>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>33</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>44</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>55</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>66</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Danny</td>
+			<td>33</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	3、表格搜索：模糊搜素-search的使用<br><br>
+	姓名：<input type="text" class="form-control" placeholder="必填" /> <button class="btn btn-info">逐行搜索</button> <code>var arr='abcdef'</code> <button class="btn btn-info">Search例子找C</button><br><br>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>33</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>44</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>55</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>66</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Danny</td>
+			<td>33</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>赵四</td>
+			<td>44</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="div4" class="box box-re form-inline">
+	4、表格搜索：多关键词-split<br><br>
+	姓名：<input type="text" class="form-control" placeholder="多个词用空格分开" /> <button class="btn btn-info">逐行搜索</button> <code>var str='abc def 123'</code> <button class="btn btn-info">split例子拆分</button><br><br>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>33</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>44</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>55</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>66</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Danny</td>
+			<td>33</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>赵四</td>
+			<td>44</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>表格搜索 基础版本-字符串比较：</b>循环表格中所有tr，一行一行的找。已知要搜索的内容都是在每一行的第二个单元格里，判断第i行的第二个单元格的innerHTML是否等于输入框的value。如果等于，说明已经找到，则改颜色。如果未找到，就把颜色改回默认。</p>
+	<p><b>表格搜索 忽略大小写-大小写转换：</b>↑ <code>toLowerCase</code>，作用于就是把字符串都改为小写。例如：<code>sTxt.toLowerCase()</code></p>
+	<p><b>表格搜索 模糊搜素-search的使用：</b>↑ <code>search</code>，作用于找到并且返回字符串出现的位置，如果没有找到则返回-1。可以在循环的判断中search一下文本框 value是否不等于-1。如果不等于-1，就说明已经找到了。例如：<code>if(sTab.search(sTxt)!=-1)</code></p>
+	<p><b>表格搜索：多关键词-split：</b>如果一个字符串是用空格隔开的，例如：<code>var str='abc def 123'</code>，通过split可以把这个字符串切成三段，例如：<code>var arr=str.split(' ')</code>，意思就是从空格开始切，结果就是切成了3段的数组。↑ 假设用户输入的多个搜索词是用空格分开的字符串，那么可以用split把字符串切分开成为一个数组，例如<code>var sArr=sTxt.split(' ')</code>，然后不管找到未找到都先把颜色设置为默认。接下来做个循环，循环之前切开的那个数组的length。如果search数组的第i个，如果结果不等于-1，例如<code>if(sTab.search(sArr[j])!=-1)</code>，就是找到了，这个时候就执行变色。</p>
+</div>
+<script>
+	window.onload=function ()
+	{
+		var oDiv1=document.getElementById('div1');
+		var aBtn1=oDiv1.getElementsByTagName('button')[0];
+		var aIpt1=oDiv1.getElementsByTagName('input')[0];
+		var aTab1=oDiv1.getElementsByTagName('table')[0];
+		aBtn1.onclick=function ()
+		{
+			for(var i=0;i<aTab1.tBodies[0].rows.length;i++)
+			{
+				var oIpt=aIpt1.value;
+				var oTab=aTab1.tBodies[0].rows[i].cells[1].innerHTML;
+				if(oIpt==oTab)
+				{
+					aTab1.tBodies[0].rows[i].style.background='yellow';
+				}
+				else
+				{
+					aTab1.tBodies[0].rows[i].style.background='none';
+				}
+			}
+		}
+
+		var oDiv2=document.getElementById('div2');
+		var aIpt2=oDiv2.getElementsByTagName('input')[0];
+		var aBtn2=oDiv2.getElementsByTagName('button')[0];
+		var aTab2=oDiv2.getElementsByTagName('table')[0];
+		aBtn2.onclick=function ()
+		{
+			for(var i=0;i<aTab2.tBodies[0].rows.length;i++)
+			{
+				var oIpt=aIpt2.value.toLowerCase()
+				var oTab=aTab2.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+				if(oIpt==oTab)
+				{
+					aTab2.tBodies[0].rows[i].style.background='yellow';
+				}
+				else
+				{
+					aTab2.tBodies[0].rows[i].style.background='none';
+				}
+			}
+		}
+
+		var oDiv3=document.getElementById('div3');
+		var aIpt3=oDiv3.getElementsByTagName('input')[0];
+		var aBtn3=oDiv3.getElementsByTagName('button');
+		var aTab3=oDiv3.getElementsByTagName('table')[0];
+		aBtn3[0].onclick=function ()
+		{
+			for(var i=0;i<aTab3.tBodies[0].rows.length;i++)
+			{
+				var oIpt=aIpt3.value.toLowerCase();
+				var oTab=aTab3.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+				if(oTab.search(oIpt)!=-1)
+				{
+					aTab3.tBodies[0].rows[i].style.background='yellow';
+				}
+				else
+				{
+					aTab3.tBodies[0].rows[i].style.background='none';
+				}
+			}
+		}
+		aBtn3[1].onclick=function ()
+		{
+			var arr='abcdef';
+			alert(arr.search('c'))
+		}
+
+		var oDiv4=document.getElementById('div4');
+		var aBtn4=oDiv4.getElementsByTagName('button');
+		var aIpt4=oDiv4.getElementsByTagName('input')[0];
+		var aTab4=oDiv4.getElementsByTagName('table')[0];
+		aBtn4[0].onclick=function ()
+		{
+			for(var i=0;i<aTab4.tBodies[0].rows.length;i++)
+			{
+				var oIpt=aIpt4.value.toLowerCase();
+				var aArr=oIpt.split(' ');
+				var oTab=aTab4.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+				aTab4.tBodies[0].rows[i].style.background='none';
+				for(var j=0;j<aArr.length;j++)
+				{
+					if(oTab.search(aArr[j])!=-1)
+					{
+						aTab4.tBodies[0].rows[i].style.background='yellow';
+					}
+				}
+			}
+		}
+		aBtn4[1].onclick=function ()
+		{
+			var str='abc def 123';
+			var arr=str.split(' ');
+			alert(arr);
+		}
+	}
+</script>
+</body>
+</html>

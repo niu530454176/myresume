@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		.table{margin-bottom: 0;}
+		#div2 table thead tr{background: #f9f9f9;}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re">
+	1、表格应用：隔行变色、移入变色<br><br>
+	<button class="btn btn-info">老方法 提取李四单元格</button> <button class="btn btn-info">新方法 提取张三单元格</button>
+	<button class="btn btn-info">开启隔行变色</button> <button class="btn btn-info">开启移入变色</button><br><br>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>33</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>44</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>55</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>66</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Danny</td>
+			<td>33</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、表格应用：添加、删除<br><br>
+	姓名：<input type="text" class="form-control" placeholder="必填" /> 年龄：<input type="text" class="form-control" placeholder="必填" />
+	<button class="btn btn-info">添加</button><br><br>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td style="width:80px">ID</td>
+			<td style="width:200px">姓名</td>
+			<td>年龄</td>
+			<td>操作</td>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>33</td>
+			<td><a href="javascrapt:;">删除</a></td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>44</td>
+			<td><a href="javascrapt:;">删除</a></td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>55</td>
+			<td><a href="javascrapt:;">删除</a></td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>66</td>
+			<td><a href="javascrapt:;">删除</a></td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Danny</td>
+			<td>33</td>
+			<td><a href="javascrapt:;">删除</a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>获取单元格：</b><code>tBodies</code> <code>tHead</code> <code>tFoot</code> <code>rows</code> <code>cells</code> 一个表格里可以有好多个tBodies、rows、cells，所以他们都是数组。而tHead、tFoot只能有1个，所以不是数组。获取rows的时候必须填写tBodies，不然会把tHead的rows也选进去。</p>
+	<p><b>隔行变色：</b>循环所有rows，当第i个rows模上2等于0的时候，执行变色。</p>
+	<p><b>移入变色：</b>↑ 当第i个rows进行onmouseover的时候，先不进行改颜色，而是先把它之前的颜色作为变量给存起来，然后再变色。当进行onmouseout的时候，让它的变色变成之前存的变量。</p>
+	<p><b>添加表格：</b>当进行添加的时候，首先需要添加一个tr子节点 例如：<code>var oTr=document.createElement('tr')</code>，然后在oTr里再分别添加4个td子节点 例如：<code>var oTd=document.createElement('td');</code>，然后分别把每个td放进tr，例如：<code>oTr.appendChild(oTd);</code>。最后把整个tr进行appendChild放进tbody，例如：<code>oTab2[0].tBodies[0].appendChild(oTr);</code>
+		<br>第一个td的innerHTML是ID，首先把rows的length作为一个变量存下。然后在innerHTML中赋值这个变量并加1。例如 <code>oTd.innerHTML=id2++;</code>。ID不重用，一旦出现了一次，就不会出现第二次。
+		<br>第二个td和第三个td的innerHTML分别是两个输入框的value。
+		<br>第四个td的innerHTML是删除连接。</p>
+	<p><b>删除表格：</b>↑ 首先从oTd里把第0个A标签选出来，加onlick，例如：<code>oTd.getElementsByTagName('a')[0].onclick</code>，在表格的tbody里removeChild这个A标签的父级（td）的父级（tr），例如：<code>oTab2[0].tBodies[0].removeChild(this.parentNode.parentNode);</code></p>
+</div>
+<script>
+	window.onload=function ()
+	{
+		var oDiv1=document.getElementById('div1');
+		var aBtn1=oDiv1.getElementsByTagName('button');
+		var aTab1=oDiv1.getElementsByTagName('table')[0];
+		aBtn1[0].onclick=function ()
+		{
+			alert(aTab1.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[1].getElementsByTagName('td')[1].innerHTML)
+		}
+		aBtn1[1].onclick=function ()
+		{
+			alert(aTab1.tBodies[0].rows[0].cells[1].innerHTML)
+		}
+		aBtn1[2].onclick=function ()
+		{
+			var color='none';
+			if(this.innerHTML=='开启隔行变色')
+			{
+				this.innerHTML='关闭隔行变色';
+				this.className='btn btn-danger';
+				color='#EEE';
+			}
+			else if(this.innerHTML=='关闭隔行变色')
+			{
+				this.innerHTML='开启隔行变色'
+				this.className='btn btn-info';
+				color='none';
+			}
+			for(var i=0;i<aTab1.tBodies[0].rows.length;i++)
+			{
+				if(i%2==0)
+				{
+					aTab1.tBodies[0].rows[i].style.background=color;
+				}
+			}
+		}
+		aBtn1[3].onclick=function ()
+		{
+			var oldColor='none';
+			if(this.innerHTML=='开启移入变色')
+			{
+				this.className='btn btn-danger';
+				this.innerHTML='关闭移入变色';
+				for(var i=0;i<aTab1.tBodies[0].rows.length;i++)
+				{
+					aTab1.tBodies[0].rows[i].onmouseover=function ()
+					{
+						oldColor=this.style.background;
+						this.style.background='yellow';
+					}
+					aTab1.tBodies[0].rows[i].onmouseout=function ()
+					{
+						this.style.background=oldColor;
+					}
+				}
+			}
+			else if(this.innerHTML=='关闭移入变色')
+			{
+				this.className='btn btn-info';
+				this.innerHTML='开启移入变色';
+				for(var i=0;i<aTab1.tBodies[0].rows.length;i++)
+				{
+					aTab1.tBodies[0].rows[i].onmouseover=aTab1.tBodies[0].rows[i].onmouseout=function ()
+					{
+
+					};
+				}
+			}
+		}
+
+
+		var oDiv2=document.getElementById('div2');
+		var aIpt2=oDiv2.getElementsByTagName('input');
+		var aBtn2=oDiv2.getElementsByTagName('button')[0];
+		var aTab2=oDiv2.getElementsByTagName('table')[0];
+		var oId2=aTab2.tBodies[0].rows.length+1;
+		for(var i=0;i<aTab2.tBodies[0].rows.length;i++)
+		{
+			aTab2.tBodies[0].rows[i].cells[3].getElementsByTagName('a')[0].onclick=function ()
+			{
+				aTab2.tBodies[0].removeChild(this.parentNode.parentNode);
+			}
+		}
+		aBtn2.onclick=function ()
+		{
+			var oName=aIpt2[0].value;
+			var oSage=aIpt2[1].value;
+			var oDele='<a href="javascript:;">删除</a>';
+
+			if(oName==''||oSage==''||!isNaN(oName)||isNaN(oSage))
+			{
+				alert('必须输入内容，且名字不能为数字');
+			}
+			else
+			{
+				var oTr=document.createElement('tr');
+
+				var oTd=document.createElement('td');
+				oTd.innerHTML=oId2++;
+				oTr.appendChild(oTd);
+
+				var oTd=document.createElement('td');
+				oTd.innerHTML=oName;
+				oTr.appendChild(oTd);
+
+				var oTd=document.createElement('td');
+				oTd.innerHTML=oSage;
+				oTr.appendChild(oTd);
+
+				var oTd=document.createElement('td');
+				oTd.innerHTML=oDele;
+				oTr.appendChild(oTd);
+
+				oTd.getElementsByTagName('a')[0].onclick=function ()
+				{
+					aTab2.tBodies[0].removeChild(this.parentNode.parentNode);
+				}
+				aTab2.tBodies[0].appendChild(oTr);
+			}
+		}
+	}
+</script>
+</body>
+</html>

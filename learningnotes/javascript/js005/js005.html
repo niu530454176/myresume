@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		li a {
+			float: right;
+		}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re">
+	1、文档碎片<br><br>
+	<div class="box box-re">
+		例1：创建1000个li<br><br>
+		<button class="btn btn-info">开始创建</button>
+		<br><br>
+		<ul class="list-group">
+		</ul>
+	</div>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>文档碎片：</b><code>createDocumentFragment()</code> 老式IE可能还会用到。新版本下已经看不出作用了。</p>
+</div>
+<script>
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button')[0];
+		var aUl1 = oDiv1.getElementsByTagName('ul')[0];
+		aBtn1.onclick = function () {
+			var oFrg = document.createDocumentFragment();
+			console.log(oFrg);
+			for (var i = 0; i < 1000; i++) {
+				var oLi = document.createElement('li');
+				oLi.innerHTML = '创建完成，这是第' + i + '个li';
+				aUl1.appendChild(oLi);
+				if (i % 2 == 0) {
+					oLi.className = 'list-group-item list-group-item-info';
+				}
+				else {
+					oLi.className = 'list-group-item';
+				}
+			}
+			aUl1.appendChild(oFrg);
+		}
+	}
+</script>
+</body>
+</html>

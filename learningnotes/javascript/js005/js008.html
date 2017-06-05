@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		.table, .list-group {
+			margin-bottom: 0;
+		}
+
+		button.content {
+			margin: 0 auto;
+		}
+	</style>
+</head>
+
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	例1、移动li 从黄色区域移动到红色区域<br><br>
+	<button class="btn btn-info content">移动Li</button>
+	<div class="box box-re form-inline" style="background: yellow;">
+		<ul class="list-group">
+			<li class="list-group-item">1</li>
+			<li class="list-group-item">2</li>
+			<li class="list-group-item">3</li>
+			<li class="list-group-item">4</li>
+			<li class="list-group-item">5</li>
+		</ul>
+	</div>
+	<div class="box box-re form-inline" style="background: red;">
+		<ul class="list-group">
+		</ul>
+	</div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	例2、appendChild到ul1里<br><br>
+	<button class="btn btn-info content">移动Li</button>
+	<div class="box box-re form-inline" style="background: yellow;">
+		<ul class="list-group">
+			<li class="list-group-item">1</li>
+			<li class="list-group-item">2</li>
+			<li class="list-group-item">3</li>
+			<li class="list-group-item">4</li>
+			<li class="list-group-item">5</li>
+		</ul>
+	</div>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	例3、排序<br><br>
+	<button class="btn btn-info content">排序Li</button>
+	<div class="box box-re form-inline" style="background: yellow;">
+		<ul class="list-group">
+			<li class="list-group-item">34</li>
+			<li class="list-group-item">25</li>
+			<li class="list-group-item">9</li>
+			<li class="list-group-item">88</li>
+			<li class="list-group-item">54</li>
+		</ul>
+	</div>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>移动Li：</b>首先找出要移动的Li是谁，其实就是Ul1的第一个子节点。例如：<code>var
+		oLi1=oUl1[0].children[0];</code>。首先需要把这个子节点从Ul1里移除掉，例如：<code>oUl1[0].removeChild(oLi1);</code>。然后再把它添加到Ul2里，例如：<code>oUl2.appendChild(oLi1);</code>。
+	</p>
+	<p><b>关于appendChild：</b>其实appendChild做了两件事，1、先把元素从原有的父级上删掉。2、添加到新的父级。所以可以不需要在原有的父级上removeChild，而是直接在新的父级上直接appendChild就可以了。
+	</p>
+	<p><b>例2appendChild到Ul1里：</b>其实这个子节点本身就是Ul1里的，而现在又添加了一遍。结果就是Li1跑到最下边去了。它的原理就是先把1给删掉，同时2就会往上顶，然后又把1添加到最后边。</p>
+	<p><b>排序原理：</b>首先从所有li里找到最小的那一个。把最小的那一个appendChild加到最后，持续寻找最小的，持续添加到最后。</p>
+	<p><b>元素集合：</b><code>var aLi=oUl3[0].getElementsByTagName('li');</code>。实际上这个aLi并不是一个数组，至少他不是一个Array。aLi它叫做元素集合，就是把一大堆的元素给放到一起，跟数组差不多。只不过是元素集合也有length，也可以用方括号。所以sort之类的对于元素集合来说就不好使了。
+	</p>
+	<p><b>排序-元素集合转成数组：</b>既然aLi不是一个数组，那就建立一个空数组，做一个循环，循环所有li的length。每循环一次就把这个li里的值就添加到数组里去。这个时候数组就有了一堆的li了，然后对这个数组进行sort排序。在做sort排序的时候需要一个比较函数，它有两个参数，这两个参数就是要比较的东西，也就是li1和li2的innerHTML的大小。接下来按照数组的顺序给ul重新循环appendChild一遍所有li。
+	</p>
+</div>
+<script>
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button')[0];
+		aBtn1.onclick = function () {
+			var aUl = oDiv1.getElementsByTagName('ul');
+			var oLi = aUl[0].children[0];
+			if (!oLi) {
+				return;
+			}
+			aUl[0].removeChild(oLi);
+			aUl[1].appendChild(oLi);
+		};
+
+		var oDiv2 = document.getElementById('div2');
+		var aBtn2 = oDiv2.getElementsByTagName('button')[0];
+		aBtn2.onclick = function () {
+			var aUl = oDiv2.getElementsByTagName('ul')[0];
+			var oLi = aUl.children[0];
+			aUl.appendChild(oLi);
+		}
+
+		var oDiv3 = document.getElementById('div3');
+		var aBtn3 = oDiv3.getElementsByTagName('button')[0];
+		aBtn3.onclick = function () {
+			var oUl = oDiv3.getElementsByTagName('ul')[0];
+			var oLi = oUl.children[0];
+			var aRr = [];
+			for (var i = 0; i < oUl.children.length; i++) {
+				aRr[i] = oUl.children[i];
+			}
+			aRr.sort(function (li1, li2) {
+				var n1 = parseInt(li1.innerHTML);
+				var n2 = parseInt(li2.innerHTML);
+				return n1 - n2;
+			});
+			for (var i = 0; i < aRr.length; i++) {
+				alert('准备把' + aRr[i].innerHTML + '放到最下边');
+				oUl.appendChild(aRr[i]);
+				if (i == aRr.length - 1) {
+					alert('排序已完成');
+				}
+			}
+
+		}
+	}
+</script>
+</body>
+</html>

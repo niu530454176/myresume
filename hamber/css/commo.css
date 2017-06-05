@@ -1,0 +1,159 @@
+body, p, img, dl, dt, dd, ul, ol, h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
+body { position: relative; font: 12px/24px "Microsoft YaHei", Arial; min-width: 960px; }
+ul, ol { list-style: none; }
+img { border: 0 none; }
+input, select { vertical-align: middle; }
+table { border-collapse: collapse; }
+s, em, i { font-style: normal; text-decoration: none; }
+.cf { *zoom: 1; }
+.cf:after { clear: both; content: "."; display: block; height: 0; overflow: hidden; visibility: hidden; zoom: 1; }
+.w {
+    width: 960px;
+    margin: 0 auto;
+}
+body {
+    background: url(../images/bg.png);
+}
+/*.logo-img {*/
+/*background: url(../images/logo.png) no-repeat;*/
+/*height: 104px;*/
+/*}*/
+
+.logo {
+    margin-top: 35px;
+}
+.nav .top-border,
+.nav .bottom-border {
+    height: 8px;
+    background-color: #822619;
+}
+.nav .nav-list-wrap {
+    margin: 3px 0;
+    height: 46px;
+    background: #1B6568 url(../images/diamond.png) repeat-x center;
+}
+.nav .nav-list-wrap li {
+    float: left;
+    margin: 0 22px;
+    line-height: 46px;
+    font-size: 20px;
+}
+.nav .nav-list-wrap li a {
+    color: #94C4C7;
+    text-decoration: none;
+}
+.nav .nav-list-wrap li a:hover {
+    color: #EBE9D7;
+}
+.nav .nav-list-wrap .waiter {
+    position: absolute;
+    top: -149px;
+    right: 0;
+}
+.nav .nav-list-w {
+    position: relative;
+}/*底部样式开始*/
+.footer {
+    margin-top: 30px;
+    color: #EBE9D7;
+}
+.footer a {
+    color: #EBE9D7;
+}
+.footer .top-border {
+    height: 8px;
+    background-color: #822619;
+}
+.footer .footer-content {
+    margin-top: 3px;
+    background-color: #1B6568;
+}
+.footer .left {
+    width: 200px;
+    float: left;
+    margin-right: 120px;
+}
+.footer .left .hotline {
+    font-size: 18px;
+    color: white;
+    margin-top: 20px;
+}
+.footer .left .hotline-number {
+    font-size: 20px;
+    color: #FFF;
+    margin-top: 10px;
+}
+.footer .left .links {
+    margin: 10px 0;
+}
+.footer .left .links li {
+    float: left;
+    margin-right: 8px;
+}
+.footer .middle {
+    float: left;
+    width: 330px;
+    margin-right: 50px;
+}
+
+.footer .middle .footer-logo {
+    margin-top: 20px;
+}
+
+.footer .middle .footer-logo {
+    text-align: center;
+}
+
+.middle .middle_first{
+    margin-left: -10px;
+}
+.footer .middle ul li {
+    display: inline;
+}
+.footer .middle ul li a{
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer .middle .copyright {
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+.footer .right {
+    float: left;
+    width: 230px;
+    margin-top: 26px;
+}
+
+.footer .right .email{
+    color: #1b6568;
+    background: url(../images/email.png);
+    width: 190px;
+    height: 28px;
+    padding: 0 20px;
+    border: none;
+    outline: none;
+}
+
+.footer .right .subscribe{
+    width: 204px;
+    height: 32px;
+    font-size: 20px;
+    border: 3px solid #e2e3d2;
+    display: block;
+    margin: 10px auto auto;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 3px;
+    background: #822619;
+    text-decoration: none;
+}
+.nav .nav-list-wrap li .home,
+.nav .nav-list-wrap li .menu,
+.nav .nav-list-wrap li .about,
+.nav .nav-list-wrap li .contact,
+.nav .nav-list-wrap li .blog {
+    color: #FFFFFF;
+}
+/*底部样式结束*/

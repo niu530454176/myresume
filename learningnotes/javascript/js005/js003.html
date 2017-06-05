@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	1、DOM方式操作元素属性<br><br>
+	<div class="box box-re">
+		例1：setAttribute<br><br>
+		<input type="text" class="form-control" value="还没修改" readonly /><br><br><button class="btn btn-info">修改输入框内容</button> <code>aIpt1[0].setAttribute('value', '更改完毕')</code><br><br><button class="btn btn-info">读取输入框内容</button> <code>aIpt1[0].getAttribute('value')</code><br><br><button class="btn btn-info">移除输入框内容</button> <code>aIpt1[0].removeAttribute('value')</code>
+	</div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、DOM元素灵活查找<br><br>
+	<div class="box box-re">
+		例1：选出所有元素 通过className条件筛选<br><br>
+		<ul class="list-group">
+			<li class="list-group-item">无</li>
+			<li class="list-group-item class">class</li>
+			<li class="list-group-item">无</li>
+			<li class="list-group-item class">class</li>
+			<li class="list-group-item class">class</li>
+		</ul>
+		<button class="btn btn-info">修改指定class的背景颜色</button><br><br>
+		<button class="btn btn-info">修改指定class的背景颜色</button>
+	</div>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>元素属性操作：</b>第一种：<code>oDiv.style.display='block';</code> 第二种：<code>oDiv.style['display']='block';</code> 第三种：<code>DOM方式操作元素属性</code></p>
+	<p><b>DOM方式操作元素属性：</b>获取：getAttribute(属性名)；设置：setAttribute(属性名,值)；删除：removeAttrebute(属性名)</p>
+	<p><b>DOM方式灵活查找：</b>选出所有元素，通过className条件删选。封装函数时传两个参数进去，一个是要查找元素的父级，一个是要查找的class名。循环所有找到的元素存入数组，最后return出数组。</p>
+</div>
+<script>
+	function getClassName (aParent,sClass)
+	{
+		var aResult=[];
+		var aObj=aParent.getElementsByTagName('*');
+		for(var i=0;i<aObj.length;i++)
+		{
+			if(aObj[i].className==sClass)
+			{
+				aResult.push(aObj[i]);
+			}
+		}
+		return aResult;
+
+	}
+	window.onload=function ()
+	{
+		var oDiv1=document.getElementById('div1');
+		var aBtn1=oDiv1.getElementsByTagName('button');
+		var aIpt1=oDiv1.getElementsByTagName('input')[0];
+		aBtn1[0].onclick=function ()
+		{
+			aIpt1.setAttribute('value','已经修改');
+		}
+		aBtn1[1].onclick=function ()
+		{
+			alert(aIpt1.getAttribute('value'));
+		}
+		aBtn1[2].onclick=function ()
+		{
+			aIpt1.removeAttribute('value');
+		}
+
+		var oDiv2=document.getElementById('div2');
+		var aBtn2=oDiv2.getElementsByTagName('button');
+		var aUl2=oDiv2.getElementsByTagName('ul')[0];
+		var aLi2=oDiv2.getElementsByTagName('li');
+		aBtn2[0].onclick=function ()
+		{
+			for(var i=0;i<aLi2.length;i++)
+			{
+				if(aLi2[i].className=='list-group-item class')
+				{
+					aLi2[i].style.background='yellow';
+				}
+			}
+		}
+		aBtn2[1].onclick=function ()
+		{
+			alert(getClassName(aUl2,'list-group-item class'))
+			for(var i=0;i<getClassName(aUl2,'list-group-item class').length;i++)
+			{
+				getClassName(aUl2,'list-group-item class')[i].style.background='blue';
+			}
+		}
+	}
+</script>
+</body>
+</html>

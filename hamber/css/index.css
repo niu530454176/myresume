@@ -1,0 +1,27 @@
+.content .hamburger {
+    width: 100%;
+}
+.content h1 {
+    margin-top: 4px;
+    color: #1B6568;
+    font-size: 30px;
+}
+.content p {
+    color: #4C1407;
+    line-height: 30px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.content p span {
+    text-decoration: underline;
+}
+.content .food-list {
+    margin-top: 65px;
+}
+.content .food-list li {
+    float: left;
+    margin-right: 28px;
+}
+.content .food-list .last {
+    margin-right: 0;
+}

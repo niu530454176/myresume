@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1.box-re, #div2.box-re {
+			position: inherit;
+		}
+
+		#div1 > div {
+			width: 100%;
+			height: 60px;
+			transition: none;
+		}
+
+		.jingguo {
+			float: left;
+			display: inline;
+			padding: 20px;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		.chuxian {
+			float: left;
+			display: inline;
+			padding: 20px;
+			margin-left: 20px;
+			display: none;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		#div1 > div {
+			width: 100%;
+			height: 100px;
+			position: relative;
+		}
+
+		#div1 > div span {
+			width: 100px;
+			height: 100px;
+			background: #efefef;
+			transition: none;
+			line-height: 100px;
+			font-size: 32px;
+			text-align: center;
+			cursor: pointer;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		#div2 > div {
+			height: 100px;
+			position: relative;
+			overflow: hidden;
+			transition: none;
+			background: #c00;
+		}
+
+		#div2 ul {
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			left: 0;
+			top: 0;
+			transition: none;
+			background: green;
+		}
+
+		#div2 li {
+			float: left;
+			list-style: none;
+			margin: 0 10px 0 0;
+			padding: 0;
+			width: 100px;
+			height: 100px;
+			border: 0px double red;
+			background: #efefef;
+			line-height: 100px;
+			font-size: 32px;
+			text-align: center;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	1、向右移动<br><br>
+	<div><span>飘</span></div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、无缝滚动<br><br>
+	<select class="form-control">
+		<option value="0">速度</option>
+		<option value="1">快</option>
+		<option value="2">慢</option>
+	</select>
+	<button class="btn btn-info">向左滚动</button>
+	<button class="btn btn-info">向右滚动</button>
+	<br><br>
+	<div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>向右移动：</b><code>offsetLeft</code> 例如可以通过<code>onclick="alert(this.offsetLeft)"</code>
+		查看left的值（左边距）。让物体向右动起来，其实就是自动修改绝对定位的left。通过定时器，让aSpn1的left每30毫秒自动加10像素，并还给他自己。<code>aSpn1.style.left=aSpn1.offsetLeft+Speed+'px';</code>
+	</p>
+	<p><b>无缝滚动：</b>开定时器，让ul的left自动增加。但是当ul一走，ul后边div的背景就漏出来了。所以可以通过复制一份ul的innerHTML<code>ul.innerHTML=ul.innerHTML+ul.innerHTML</code>
+		然后需要修改ul的宽度，他得宽度等于<code>li.length*li.offsetWidth+'px'</code> 但是这个ul也有滚完的时候，所以可以让ul滚动到一半的时候<code>if(ul.style.left>=ul的宽度/2)</code>，把left的值改为初始化<code>ul.style.left=0</code>。
+	</p>
+</div>
+<script>
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aDiv1 = oDiv1.getElementsByTagName('div')[0];
+		var aSpn1 = aDiv1.getElementsByTagName('span')[0];
+		aSpn1.onclick = function () {
+			var timer = null;
+			function show() {
+				var speed = 2;
+				aSpn1.style.left = aSpn1.offsetLeft + 2 + 'px';
+				aSpn1.style.fontSize = '12px';
+				aSpn1.style.lineHeight = '24px';
+				aSpn1.innerHTML = '当前位置：' + aSpn1.offsetLeft + '<br/>当前速度：' + speed;
+				if (aSpn1.offsetLeft >= aDiv1.offsetWidth - aSpn1.offsetWidth) {
+					aSpn1.style.left = 0;
+					clearInterval(timer);
+				}
+			}
+			timer = setInterval(show, 30);
+		};
+
+		var oDiv2 = document.getElementById('div2');
+		var aBtn2 = oDiv2.getElementsByTagName('button');
+		var aSlt2 = oDiv2.getElementsByTagName('select')[0];
+		var aDiv2 = oDiv2.getElementsByTagName('div')[0];
+		var aUl2 = oDiv2.getElementsByTagName('ul')[0];
+		var aLi2 = oDiv2.getElementsByTagName('li');
+		var speed2 = 0;
+		var timer2 = null;
+		var aLi2W = parseInt(getStyle(aLi2[0], 'width')) + parseInt(getStyle(aLi2[0], 'margin-right'));
+
+		function speed() {
+			var speedN = 0;
+			var index = aSlt2.selectedIndex;
+			var val = aSlt2.options[index].value;
+			if (val == 1) {
+				speedN = 10;
+			}
+			else if (val == 2) {
+				speedN = 2;
+			}
+			else {
+				speedN = 0;
+			}
+			return speedN;
+		}
+
+		aUl2.innerHTML = aUl2.innerHTML + aUl2.innerHTML;
+		aUl2.style.width = aLi2W * aLi2.length + 'px';
+		aDiv2.style.width = aUl2.offsetWidth / 2 + 'px';
+		aBtn2[0].onclick = function () {
+			speed2 = -speed();
+		};
+		aBtn2[1].onclick = function () {
+			speed2 = speed();
+		};
+		timer2 = setInterval(startMove, 30);
+		aDiv2.onmouseover = function () {
+			clearInterval(timer2);
+		};
+		aDiv2.onmouseout = function () {
+			timer2 = setInterval(startMove, 30);
+		};
+		function startMove() {
+			aUl2.style.left = aUl2.offsetLeft + speed2 + 'px';
+			if (aUl2.offsetLeft < -aUl2.offsetWidth / 2) {
+				aUl2.style.left = 0;
+			}
+			else if (aUl2.offsetLeft > 0) {
+				aUl2.style.left = -aUl2.offsetWidth / 2 + 'px';
+			}
+		}
+	};
+	function getStyle(obj, name) {
+		if (obj.currentStyle) {
+			return obj.currentStyle[name];
+		}
+		else {
+			return getComputedStyle(obj, false)[name];
+		}
+	}
+</script>
+</body>
+</html>

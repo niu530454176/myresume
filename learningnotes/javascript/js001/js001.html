@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="apple-touch-icon-precomposed" href="../../logo_icon.png"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<link id="skin1" rel="stylesheet" type="text/css" href=""/>
+	<style>
+		#btn1, #btn2 {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0"
+																				   src="../../images/group.png"
+																				   alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div class="box box-re">
+	1、说明事件<br>
+	<p>
+		<button class="btn btn-lg btn-primary btn-shadow" onclick="alert('弹出窗口')">按钮</button>
+	</p>
+</div>
+
+<div class="box box-re">
+	2、移入移出<br>
+	<p>
+		<kbd>btn1.style.display='block'</kbd> 将btn1的style的display的值设置为block<br><br>
+		<kbd>get Element By Id</kbd> 通过id获取元素<br>获取 元素 用 id<br><br>
+		<label class="checkbox-inline" onmouseover="document.getElementById('btn1').style.display='block'"
+			   onmouseout="document.getElementById('btn1').style.display='none'"><input type="checkbox"/>
+			鼠标经过出现按钮</label><br>
+		<button id="btn1" class="btn btn-lg btn-primary btn-shadow" onclick="alert('这是一个按钮');">按钮</button>
+	</p>
+</div>
+
+<div id="div3" class="box box-re" onmouseover="toRed()"
+	 onmouseout="document.getElementById('div3').style.height='';document.getElementById('div3').style.background='';document.getElementById('div3').style.color='';">
+	3、函数 鼠标经过这个div执行变窄变高变色 移出再恢复
+</div>
+
+<div class="box box-re">
+	<a href="javascript:;" onmouseover="opbox()" onmouseout="cobox()">4、鼠标经过就弹出层(函数、变量)</a>
+	<div id="boxab1" class="box box-ab">
+		<p>这是弹出的层。</p>
+	</div>
+</div>
+
+<div class="box box-re">
+	<a href="javascript:;" onclick="clbox()">5、鼠标点击就弹出层(函数、变量、判断)</a>
+	<div id="boxab2" class="box box-ab">
+		<p>这是弹出的层。看似差不多。</p>
+	</div>
+</div>
+
+<div id="div6" class="box box-re">
+	6、网页换肤
+	<p>
+		<button class="btn btn-info" onclick="toSkin1()">样式</button>
+	</p>
+</div>
+
+<div id="div7" class="box box-re">
+	7、显示隐藏
+	<p>
+		<button class="btn btn-info" onclick="showHide()">显示隐藏</button>
+		<button id="btn2" class="btn btn-danger">显示隐藏</button>
+	</p>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>编写JS的流程：</b><br>
+		-布局：html＋css 在写js之前必须保证有一个稳固的布局，这个布局本身不能有任何兼容问题。<br>
+		-属性：确定要修改哪些属性 确定通过js修改哪些属性，例如display<br>
+		-事件：确定用户做哪些操作（产品设计）确定要在什么样的事件里修改，比如点击、移入移出<br>
+		-编写js：在事件中，用js来修改页面元素的样式
+	</p>
+	<p><b>变量：</b>别名</p>
+	<p><b>事件：</b>用户的操作</p>
+	<p><b>函数：</b>告诉计算机有这个函数，但不会被执行。</p>
+	<p><b>调用：</b>真正执行函数里的代码。</p>
+	<p><b>if：</b>if(条件){语句1}else{语句2}</p>
+	<p><b>＝：</b>赋值（改变）</p>
+	<p><b>＝＝：</b>判断</p>
+	<p><b>a链接加js：</b><kbd><a href="javascript:;">链接</a></kbd></p>
+</div>
+<script>
+	function toRed() {
+		var oDid3 = document.getElementById('div3').style;
+		oDid3.background = '#C00';
+		oDid3.height = '200px';
+		oDid3.color = '#FFF';
+	}
+	function opbox() {
+		var aBox1 = document.getElementById('boxab1');
+		aBox1.style.display = 'block';
+	}
+	function cobox() {
+		var aBox1 = document.getElementById('boxab1');
+		aBox1.style.display = 'none';
+	}
+	function clbox() {
+		var aBox2 = document.getElementById('boxab2');
+		if (aBox2.style.display == 'block') {
+			aBox2.style.display = 'none';
+		}
+		else {
+			aBox2.style.display = 'block';
+		}
+	}
+	function toSkin1() {
+		document.body.style.backgroundColor = '#' + (Math.random() * 999999).toString(16).slice(6, 12)
+	}
+	function toSkin2() {
+		var s1 = document.getElementById('skin1');
+		s1.href = 'js001/css2.css';
+	}
+	function showHide() {
+		var aB2 = document.getElementById('btn2');
+		if (aB2.style.display == 'block') {
+			aB2.style.display = 'none';
+		}
+		else {
+			aB2.style.display = 'block';
+		}
+	}
+</script>
+</body>
+</HTML>

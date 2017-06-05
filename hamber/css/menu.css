@@ -1,0 +1,103 @@
+.content{
+    width: 960px;
+    margin: auto;
+    margin-top: 34px;
+}
+.content .content_left{
+    width: 606px;
+    height: 984px;
+    border: 8px solid #993300;
+    border-radius: 8px;
+    float: left;
+    background: #ffffcc;
+}
+.content_left h1{
+    margin-left: 32px;
+    margin-top: 38px;
+    font-size: 36px;
+    color: #336666;
+}
+.content_left img{
+    margin-top: 26px;
+    margin-left: 64px;
+    margin-bottom: 40px;
+    width: 470px;
+}
+.content .left_price{
+    width: 538px;
+    margin: auto;
+}
+.content_left hr{
+    border: 1px dotted #993300;
+    width: 578px;
+    margin: 16px auto;
+}
+.left_price .price_list{
+    float: left;
+    width: 428px;
+}
+.price_list h2{
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #993300;
+}
+.price_list p{
+    font-size: 12px;
+    color: #330000;
+    line-height: 20px;
+}
+.left_price .left_radio{
+    float: left;
+    width: 72px;
+    height: 72px;
+    border-radius: 36px;
+    border: 2px solid #330000;
+    background: #336666;
+    text-align: center;
+    line-height: 72px;
+    font-size: 28px;
+    display: block;
+    margin-left: 30px;
+}
+.left_radio a{
+    color: #ffffcc;
+    text-decoration: none;
+}
+.content .content_right{
+    float: left;
+    width: 280px;
+    margin-left: 44px;
+    margin-top: 46px;
+    text-align: center;
+}
+.content_right hr{
+    border: 3px solid #993300;
+}
+.content_right h2{
+    font-size: 36px;
+    color: #336666;
+    font-weight: normal;
+    margin-bottom: 44px;
+}
+.content_right a{
+    font-size: 32px;
+    font-weight: bold;
+    color: #993300;
+    text-decoration: none;
+}
+.content_right .download{
+    font-size: 24px;
+    color: #ffffcc;
+    display: block;
+    border: 3px solid #336666;
+    background: #993300;
+    margin: auto;
+    margin-top: 40px;
+    width: 270px;
+    height: 42px;
+    line-height: 42px;
+    border-radius: 4px;
+}
+.content_right .download:hover{
+    background: #991812;
+}

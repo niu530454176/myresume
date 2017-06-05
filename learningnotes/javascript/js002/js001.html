@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re">
+	1、变量的类型<br><br>
+	<button type="button" class="btn btn-info">number</button>
+	<button type="button" class="btn btn-info">string</button>
+	<button type="button" class="btn btn-info">boolean</button>
+	<button type="button" class="btn btn-info">function</button>
+	<button type="button" class="btn btn-info">object</button>
+	<button type="button" class="btn btn-info">undefined</button>
+	<div id="div1-1" class="box box-re text-info">变量类型例子展示</div>
+</div>
+<div id="div2" class="box box-re">
+	2、变量类型转换 <span class="text-danger">显式类型转换/强制类型转换（明确写出parseFloat或paseInt告诉计算机必须转换。）</span><br><br>
+	输入两个数字，点求和弹出两个数字相加的结果。
+	<div class="box box-re form-inline">
+		例1：输入框的默认value进行相加，结果是进行了字符串相加，而非数字相加。<br>
+		<input type="text" class="form-control">+<input type="text" class="form-control">
+		<button type="button" class="btn btn-info">求和</button>
+	</div>
+	<div class="box box-re form-inline">
+		例2：将value的值进行parseInt，之后再相加，就是数字相加的结果了。<br>
+		如果输入12+abc，结果会显示NaN，任何数和NaN相加结果都是NaN。NaN和NaN是不相等的。<br>
+		<input type="text" class="form-control">+<input type="text" class="form-control">
+		<button type="button" class="btn btn-info">求和</button>
+	</div>
+	<div class="box box-re form-inline">
+		例3：isNaN，检测输入框的内容是不是NaN。true为真，false为假。<br>
+		<input type="text" class="form-control">
+		<button type="button" class="btn btn-info">检测</button>
+	</div>
+	<div class="box box-re form-inline">
+		例4：检测输入的内容是不是NaN，如果是，则给出提示。如果不是，就给出运算结果，<span class="text-warning">仅支持数字整数相加</span>。<br>
+		<input type="text" class="form-control" placeholder="支持整数运算">+<input type="text" class="form-control"
+																			 placeholder="支持整数运算">
+		<button type="button" class="btn btn-info">求和</button>
+	</div>
+	<div class="box box-re form-inline">
+		例5：检测输入的内容是不是NaN，如果是，则给出提示。如果不是，就给出运算结果，<span class="text-warning">支持小数相加</span>。<br>
+		<input type="text" class="form-control" placeholder="支持小数运算">+<input type="text" class="form-control"
+																			 placeholder="支持小数运算">
+		<button type="button" class="btn btn-info">求和</button>
+	</div>
+</div>
+<div id="div3" class="box box-re">
+	3、变量类型转换 <span class="text-danger">隐式类型转化（没有写出转换语句，计算机自己进行字符串转换成数字。）</span><br><br>
+	<div class="box box-re">
+		例1：两个自定义变量进行相等对比，弹出运算结果。
+		<input type="text" class="form-control" placeholder="var a='5'（数字5）" readonly/> = <input type="text"
+																								 class="form-control"
+																								 placeholder="var b=5（字符串5）"
+																								 readonly/><br>
+		<button type="button" class="btn btn-info">==结果</button>
+		<button type="button" class="btn btn-info">===结果</button>
+		<br>
+		==结果：先转换类型，然后比较。计算机自动先把变量5转换成了数字5，然后再进行了比较。这样才会出现true的提示。<br>
+		===结果：不转换类型，直接比。这样才会出现false的提示。
+	</div>
+	<div class="box box-re">
+		例2：两个自定义变量进行相加和相减，弹出运算结果。
+		<input type="text" class="form-control" placeholder="var a='15'（字符串15）" readonly/> = <input type="text"
+																								   class="form-control"
+																								   placeholder="var a='5'（字符串5）"
+																								   readonly/><br>
+		<button type="button" class="btn btn-info">+结果</button>
+		<button type="button" class="btn btn-info">-结果</button>
+		<br>
+		+结果：+号在计算机里有两种功能。1、字符串链接。2、数字相加。运算时计算机采取了字符串链接的方法给出了结果，所以是55。<br>
+		-结果：-号在计算机只有一种功能。就是数字相减。所以计算机算出了结果为0。
+	</div>
+</div>
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>JAVAscript的组成：</b>1、ECMAscript-解释器，人类语言转换成0和1。2、DOM，Document(文档，HTML) Object（对象）
+		Model（模型）。3、BOM，Browser（浏览器）Object Model。</p>
+	<p><b>变量的类型</b>告诉计算机有这个函数，但不会被执行，实际执行的是函数中的代码。</p>
+	<p><b>parseInt：</b>作用于字符串转换成数字，不支持小数。从左到右去扫描字符串，一旦发现不是数字了即停止扫描，保留已发现的数字。</p>
+	<p><b>parseFloat：</b>作用于字符串转换成数字，支持小数。</p>
+	<p><b>NaN：</b>全称是Not a Number（非数字）。</p>
+	<p><b>isNaN</b>作用于检测是否为NaN。</p>
+</div>
+<script>
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button');
+		var aDiv1 = oDiv1.getElementsByTagName('div')[0];
+		aBtn1[0].onclick = function () {
+			var a = 123;
+			aDiv1.innerHTML = '类型：数字' + typeof a + '<br>例如：<code>var a=123;</code>';
+		}
+		aBtn1[1].onclick = function () {
+			var a = 'abc';
+			aDiv1.innerHTML = '类型：字符串' + typeof a + '<br>例如：<code>var a="abc";</code>';
+		}
+		aBtn1[2].onclick = function () {
+			var a = true;
+			aDiv1.innerHTML = '类型：布尔' + typeof a + '<br>例如：<code>var a=true;</code>';
+		}
+		aBtn1[3].onclick = function () {
+			var a = function () {
+				alert('d');
+			};
+			aDiv1.innerHTML = '类型：函数' + typeof a + '<br>例如：<code>var a=function;</code>';
+		}
+		aBtn1[4].onclick = function () {
+			var a = document;
+			aDiv1.innerHTML = '类型：对象' + typeof a + '<br>例如：<code>var a=document;</code>';
+		}
+		aBtn1[5].onclick = function () {
+			var a;
+			aDiv1.innerHTML = '类型：未定义' + typeof a + '<br>例如：<code>var a;</code><br>变量未定义，或者定义了不写内容都是undefined。变量本身没有类型，他的类型取决于他存的内容，存的数字就是number。';
+		}
+
+
+		var oDiv2 = document.getElementById('div2');
+		var aIpt2 = oDiv2.getElementsByTagName('input');
+		var aBtn2 = oDiv2.getElementsByTagName('button');
+		aBtn2[0].onclick = function () {
+			if (aIpt2[0].value == '') {
+				alert('请检查第一个输入框的内容');
+			}
+			else if (aIpt2[1].value == '') {
+				alert('请检查第二个输入框的内容');
+			}
+			else {
+				var a = aIpt2[0].value;
+				var b = aIpt2[1].value;
+				aIpt2[0].value = '';
+				aIpt2[1].value = '';
+				alert(a + b);
+			}
+		}
+
+		aBtn2[1].onclick = function () {
+			var a = parseFloat(aIpt2[2].value);
+			var b = parseFloat(aIpt2[3].value);
+			aIpt2[2].value = '';
+			aIpt2[3].value = '';
+			alert(a + b);
+		};
+		aBtn2[2].onclick = function () {
+			alert(isNaN(aIpt2[4].value));
+			aIpt2[4].value = '';
+		};
+		aBtn2[3].onclick = function () {
+			if (isNaN(aIpt2[5].value)) {
+				alert('请检查第一个输入框是否为数字');
+			}
+			else if (isNaN(aIpt2[6].value)) {
+				alert('请检查第二个输入框是否为数字');
+			}
+			else {
+				var a = parseInt(aIpt2[5].value);
+				var b = parseInt(aIpt2[6].value);
+				aIpt2[5].value = '';
+				aIpt2[6].value = '';
+				alert(a + b);
+			}
+		};
+		aBtn2[4].onclick = function () {
+			if (isNaN(aIpt2[7].value)) {
+				alert('请检查第一个输入框是否为数字');
+			}
+			else if (isNaN(aIpt2[8].value)) {
+				alert('请检查第二个输入框是否为数字');
+			}
+			else {
+				var a = parseInt(aIpt2[7].value);
+				var b = parseInt(aIpt2[8].value);
+				aIpt2[7].value = '';
+				aIpt2[8].value = '';
+				alert(a + b);
+			}
+		};
+
+		var oDiv3 = document.getElementById('div3');
+		var aIpt3 = oDiv3.getElementsByTagName('input');
+		var aBtn3 = oDiv3.getElementsByTagName('button');
+		aBtn3[0].onclick = function () {
+			var a = '5';
+			var b = 5;
+			alert(a == b);
+		}
+		aBtn3[1].onclick = function () {
+			var a = '5';
+			var b = 5;
+			alert(a === b);
+		}
+		aBtn3[2].onclick = function () {
+			var a = '15';
+			var b = 5;
+			alert(a + b);
+		}
+		aBtn3[3].onclick = function () {
+			var a = '15';
+			var b = 5;
+			alert(a - b);
+		}
+	}
+</script>
+</body>
+</html>

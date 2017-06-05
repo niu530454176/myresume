@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="lottery">
+	<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="lottery-unit lottery-unit-0"><img src="img/1.jpg">
+				<div class="mask"></div>
+			</td>
+			<td class="lottery-unit lottery-unit-1"><img src="img/2.jpg">
+				<div class="mask"></div>
+			</td>
+			<td class="lottery-unit lottery-unit-2"><img src="img/3.jpg">
+				<div class="mask"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="lottery-unit lottery-unit-7"><img src="img/4.jpg">
+				<div class="mask"></div>
+			</td>
+			<td><a class="J-start-btn" href="#"></a></td>
+			<td class="lottery-unit lottery-unit-3"><img src="img/5.jpg">
+				<div class="mask"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="lottery-unit lottery-unit-6"><img src="img/6.jpg">
+				<div class="mask"></div>
+			</td>
+			<td class="lottery-unit lottery-unit-5"><img src="img/7.jpg">
+				<div class="mask"></div>
+			</td>
+			<td class="lottery-unit lottery-unit-4"><img src="img/8.jpg">
+				<div class="mask"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script>
+	function goRatate(opts) {
+		this.init(opts);
+	}
+	goRatate.prototype = {
+		startIndex: 0,//当前index
+		endIndex: 0,//结束index
+		total: 0,//总步数
+		last: 0,//总步数
+		circle: 2,//圈数
+		$td: null,
+		index: 0,
+		speed: 50,
+		init: function (opts) {
+			var _this = this;
+			_this.$target = opts.$target;
+			_this.$td = _this.$target.find('.lottery-unit');
+			_this.$btn = _this.$target.find('.J-start-btn');
+
+			_this.endIndex = opts.endIndex || _this.endIndex;
+			_this.circle = typeof opts.circle != 'undefined' ? opts.constructor : _this.circle;
+
+			_this.hindEvent();
+		},
+		hindEvent: function () {
+			var _this = this;
+			_this.$btn.click(function () {
+				_this.go();
+			})
+		},
+		go: function () {
+			var _this = this;
+			_this.total = (_this.$td.length * _this.circle + 1) + _this.endIndex;
+			_this.last =
+			setTimeout($.proxy(_this.nextOne, _this), _this.speed);
+		},
+		nextOne: function () {
+			var _this = this;
+			_this.index++;
+			_this.$td.removeClass('active');
+			$('.lottery-unit-' + _this.index).addClass('active');
+			if (_this.index > _this.$td.length - 1) {
+				_this.idnex = 0;
+			}
+			_this.total--;
+			if ()
+			if (_this.total < 10) {
+				_this.speed += 20;
+			}
+			if (_this.total) {
+				setTimeout($.proxy(_this.nextOne, _this), _this.speed);
+			}
+		}
+	};
+	var goratate = new goRatate({
+		$target: $('#lottery'),
+		endIndex: 7,
+		circle: 10
+	});
+</script>
+</body>
+</html>

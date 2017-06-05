@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<title>JAVAscript练习</title>
+	<style>
+		#div3 {
+			width: 82%;
+			height: 50px;
+			margin: 20px 5%;
+		}
+
+		#div2 span {
+			float: left;
+			width: 50px;
+			height: 50px;
+			margin: 5px;
+			border: 1px solid red;
+		}
+
+		#div2 span.active {
+			width: 50px;
+			background: yellow;
+			border: 1px solid green;
+		}
+
+		#div4 .div5 {
+			width: 41%;
+			height: 100px;
+			background: yellow;
+		}
+	</style>
+</head>
+
+<BODY>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0"
+																				   src="../../images/group.png"
+																				   alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div class="box box-re">
+	1、while循环
+	<p>
+		<button id="button1" type="button">循环出现提示框5次</button>
+	</p>
+	<p>任何一个循环，基本都包含4个部分。第一：<b>初始化</b>。即：var i=0，var给i一个值，让i从0开始循环；第二：<b>条件</b>。即：while(i<5)，每次执行需要判断一下还成不成立，成立的话就继续重复。第三：<b>语句</b>。第四：<b>自增</b>。即：i=i+1，每执行一次语句自动加1，简化写法i++。
+	</p>
+</div>
+
+<div id="div2" class="box box-re">
+	2、for循环
+	<p>
+		<button id="button2" type="button">批量修改样式</button>
+		<button type="button" onclick="(function () {
+			var aSpn3=document.getElementById('div3').getElementsByTagName('span');
+			for(var i=0;i<aSpn3.length;i++)
+			{
+				aSpn3[i].removeAttribute('style')
+			}
+		})()">恢复样式
+		</button>
+	</p>
+	<p>固定元素个数，for循环修改样式。</p>
+	<div id="div3"><span></span><span></span><span></span><span></span></div>
+</div>
+
+<div id="div4" class="box box-re">
+	3、if判断for循环
+	<p>
+		<button id="button3" type="button">批量修改样式</button>
+	</p>
+	<p>元素个数不定，for循环修改样式。加if判断，再次点击执行返回。</p>
+	<div class="box box-re">可循环变化</div>
+	<div class="box box-re">可循环变化</div>
+	<div class="box box-re">可循环变化</div>
+</div>
+<div class="box box-re">
+	4、if判断for循环
+	<p id="inputbox"><input type="checkbox"/><input type="checkbox"/><input type="checkbox"/><input
+		type="checkbox"/><input type="checkbox"/><input type="checkbox"/></p>
+	<p>
+		<button id="button4" type="button">全选</button>
+		<button id="button5" type="button">反选</button>
+		<button id="button6" type="button">不选</button>
+	</p>
+</div>
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>while循环</b>与if用法差不多。if的格式是 if(条件){语句}，但不管条件成立与否，语句只会执行一次。while的格式是 while(条件){语句}，语句执行次数是条件不再成立为止。</p>
+	<p><b>for循环</b>与while用法差不多。格式：for(初始化;条件;自增){语句}</p>
+
+</div>
+<script>
+	window.onload = function () {
+		var aBtn1 = document.getElementById('button1');
+		aBtn1.onclick = function () {
+			var i = 0;
+			while (i < 5) {
+				alert('这是第' + (i + 1) + '次弹出');
+				i++;
+			}
+		}
+
+		var aBtn2 = document.getElementById('button2');
+		aBtn2.onclick = function () {
+			var aSpn3 = document.getElementById('div3').getElementsByTagName('span');
+			for (var i = 0; i < aSpn3.length; i++) {
+				aSpn3[i].style.background = 'yellow';
+			}
+		}
+
+		var aBtn3 = document.getElementById('button3');
+		aBtn3.onclick = function () {
+			var aDiv3 = document.getElementById('div4').getElementsByTagName('div');
+			if (aDiv3[0].style.background == 'yellow') {
+				var i = 0;
+				while (i < aDiv3.length) {
+					aDiv3[i].removeAttribute('style');
+					i = i + 1;
+				}
+			}
+			else {
+				for (var i = 0; i < aDiv3.length; i++) {
+					aDiv3[i].style.background = 'yellow';
+					aDiv3[i].style.height = '150px';
+					aDiv3[i].style.width = '50%';
+				}
+			}
+		};
+
+		var aBtn4 = document.getElementById('button4');
+		var aIpt4 = document.getElementById('inputbox').getElementsByTagName('input');
+		aBtn4.onclick = function () {
+			var i = 0;
+			while (i < aIpt4.length) {
+				aIpt4[i].checked = true;
+				i = i + 1;
+			}
+		};
+		var aBtn5 = document.getElementById('button5');
+		aBtn5.onclick = function () {
+			var i = 0;
+			while (i < aIpt4.length) {
+				if (aIpt4[i].checked == true) {
+					aIpt4[i].checked = false;
+				}
+				else {
+					aIpt4[i].checked = true;
+				}
+				i = i + 1;
+			}
+		};
+		var aBtn6 = document.getElementById('button6');
+		aBtn6.onclick = function () {
+			for (var i = 0; i < aIpt4.length; i++) {
+				aIpt4[i].checked = false;
+			}
+		}
+	}
+</script>
+</BODY>
+</HTML>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" charset="utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<title>JAVAscript练习</title>
+	<style>
+		.div4 {
+			width: 41%;
+			height: 300px;
+			background: yellow;
+		}
+	</style>
+</head>
+
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0"
+																				   src="../../images/group.png"
+																				   alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re">
+	1、函数传参 一个参数 <br>
+	<p>
+		<button type="button" onclick="setcolor1('yellow');">背景变黄</button>
+		<button type="button" onclick="setcolor1('red');">背景变红</button>
+		<button type="button" onclick="setcolor1('black');">背景变黑</button>
+		<button type="button" onclick="removeStyle('div1');">恢复原样</button>
+	</p>
+	<p>定义函数的参数为color，变量adiv的样式调用参数color，onclick事件把背景颜色的值传给参数color。</p>
+</div>
+
+<div id="div2" class="box box-re">
+	2、函数传参 两个参数 <br>
+	<p>
+		<button type="button" onclick="setstyle('width','41%');">背景变窄</button>
+		<button type="button" onclick="setstyle('background','yellow');">背景变黄</button>
+		<button type="button" onclick="setstyle('height','300px');">背景变高</button>
+		<button type="button" onclick="removeStyle('div2')">恢复原样</button>
+	</p>
+	<p>定义函数的参数为name和value，变量bdiv的样式的属性名用参数name代替，属性值用参数value代替，onclick事件把样式的属性名和值分别传给参数name和value。</p>
+</div>
+
+<div id="div3" class="box box-re">
+	3、函数传参 参数加变量<br>
+	<p>
+		<input id="text1" type="text" value="你拍一 我拍一" title="你拍一 我拍一"/>
+		<button type="button" onclick="t1('value')">改变文字</button>
+		<button type="button" onclick="t1('title')">添加title属性</button>
+	</p>
+	<p>定义函数的参数为name，定义变量a为参数name，两个onclick事件分别绑定标签属性调用参数的值。</p>
+</div>
+
+<div id="div4" class="box box-re">
+	4、修改样式 通过调取className<br>
+	<p>
+		<button type="button" onclick="toStyle()">变红 变高 变窄</button>
+		<button type="button" onclick="removeclass()">恢复原样</button>
+	</p>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>函数传参：</b>参数就是占位符</p>
+	<p><b>方括号操作属性：</b>当要修改的属性不固定的时候，就用方括号来操作。只要是可以用.的地方，都可以用方括号来表示。</p>
+	<p>通过style，操作的只能是行间样式。无论是读还是写。</p>
+	<p>样式的优先级：*（通配符）标签 class Id 行间，如果先修改了行间，再修改class就会失败。因为优先级。所以对于一个元素，要么只修改行间，要么只修改class，不能混着来。</p>
+
+</div>
+<script>
+	function removeStyle(id) {
+		var oDiv2 = document.getElementById(id);
+		oDiv2.removeAttribute('style');
+	}
+	function setcolor1(color) {
+		var oDiv1 = document.getElementById('div1');
+		oDiv1.style.background = color;
+	}
+	function setstyle(name, value) {
+		var oDiv2 = document.getElementById('div2');
+		oDiv2.style[name] = value;
+	}
+	function t1(name) {
+		var oTxt1 = document.getElementById('text1');
+		oTxt1[name] = '两个小孩儿坐灰机';
+	}
+	function toStyle() {
+		var oDiv4 = document.getElementById('div4');
+		oDiv4.className = 'div4 box box-re';
+	}
+	function removeclass() {
+		var oDiv4 = document.getElementById('div4');
+		oDiv4.className = 'box box-re';
+	}
+</script>
+</body>
+</html>

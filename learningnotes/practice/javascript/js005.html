@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1 > div{background: #000;font-size: 48px;color: #fff;}
+	</style>
+	<script>
+		function toDou(n)
+		{
+			if(n<10)
+			{
+				return '0'+n;
+			}
+			else
+			{
+				return ''+n;
+			}
+		}
+		window.onload=function ()
+		{
+			var oDiv1=document.getElementById('div1');
+			var aImg1=oDiv1.getElementsByTagName('img');
+			setInterval(tick,1000);
+			function tick ()
+			{
+				var oDate=new Date;
+				for(var i=0;i<aImg1.length;i++)
+				{
+					var str=toDou(oDate.getHours())+toDou(oDate.getMinutes())+toDou(oDate.getSeconds());
+					aImg1[i].src='js005/images/'+str.charAt(i)+'.png';
+				}
+			}
+			tick ();
+
+			var oDiv2=document.getElementById('div2');
+			var aSpn2=oDiv2.getElementsByTagName('span')[0];
+
+			setInterval(time2,1000);
+			function time2 ()
+			{
+				var oDate2=new Date;
+				var oTime2=toDou(oDate2.getHours())+':'+toDou(oDate2.getMinutes())+':'+toDou(oDate2.getSeconds());
+				aSpn2.innerHTML=oTime2;
+			}
+			time2 ();
+		}
+	</script>
+</head>
+
+<BODY>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re form-inline">
+	一、 日期对象<br><br>
+	<div class="box box-re">
+		<img src="js005/images/0.png" />
+		<img src="js005/images/0.png" />
+		:
+		<img src="js005/images/0.png" />
+		<img src="js005/images/0.png" />
+		:
+		<img src="js005/images/0.png" />
+		<img src="js005/images/0.png" />
+	</div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	二、 数字时钟<br><br>
+	<div class="box box-re">
+		当前时间是：<span></span>
+	</div>
+</div>
+
+</BODY>
+</HTML>

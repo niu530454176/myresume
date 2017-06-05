@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re form-inline">
+	1、window.open & write<br><br>
+	<button class="btn btn-info">打开窗口</button>
+	<br><br>
+	<button class="btn btn-info">document.write</button>
+	先清空，再写入。<br><br>
+	<textarea class="form-control" rows="1" cols="30"></textarea>
+	<button class="btn btn-info">运行代码框</button>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、window.close<br><br>
+	<textarea class="form-control" rows="1" cols="30"><button class="btn btn-info"
+															  onclick="window.close()">关闭窗口</button></textarea>
+	<button class="btn btn-info">运行代码框</button>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	3、window.navigator.userAgent & window.location<br><br>
+	<button class="btn btn-info">查看当前浏览器信息</button>
+	<button class="btn btn-info">查看当前网址</button>
+	<button class="btn btn-info">赋值百度为当前网址</button>
+	<br><br>
+	<code></code>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p>window.open：基本写法<code>window.open('about:blank')</code>，被执行后是新开启一个空白页。open是有返回值的，他返回的就是新打开的窗口的内容。例如：<code>var
+		newWindow=window.open('about:blank', '_blank');</code></p>
+	<p>write：基本写法<code>document.write('abc')</code>，被执行后是先把页面所有内容清空，然后再写入他的参数内容。</p>
+	<p>document：完整写法是window.document，window是可以省略的。因为document必然属于window。所以在open新窗口之后，新窗口也有document。例如：<code>newWindow.document.write(aTxt2.value);</code>
+	</p>
+	<p>window.close：基本写法<code>window.close()</code>，只能关闭由window.open打开的窗口。</p>
+	<p>window.navigator.userAgent：获取当前浏览器的版本信息。</p>
+	<p>window.location：获取当前页面的地址。不光可以获取，还可以赋值。例如：<code>window.location='http://www.baidu.com/'</code></p>
+</div>
+<script>
+	window.onload = function () {
+		var oDiv1 = document.getElementById('div1');
+		var aBtn1 = oDiv1.getElementsByTagName('button');
+		var aTxt1 = oDiv1.getElementsByTagName('textarea')[0];
+		aBtn1[0].onclick = function () {
+			window.open('http://www.bjxiaoniu.cn/', '_blank');
+		}
+		aBtn1[1].onclick = function () {
+			document.write('这是清空页面内容后的内容');
+		}
+		aBtn1[2].onclick = function () {
+			var newWindow = window.open('about:blank', '_blank');
+			newWindow.document.write(aTxt1.value);
+		}
+
+		var oDiv2 = document.getElementById('div2');
+		var aBtn2 = oDiv2.getElementsByTagName('button')[0];
+		var aTxt2 = oDiv2.getElementsByTagName('textarea')[0];
+		aBtn2.onclick = function () {
+			var newWindow = window.open('about:blank', '_blank');
+			newWindow.document.write(aTxt2.value);
+		}
+
+		var oDiv3 = document.getElementById('div3');
+		var aBtn3 = oDiv3.getElementsByTagName('button');
+		var aCod3 = oDiv3.getElementsByTagName('code')[0];
+		aBtn3[0].onclick = function () {
+			aCod3.innerHTML = '当前浏览器信息：' + window.navigator.userAgent;
+		}
+		aBtn3[1].onclick = function () {
+			aCod3.innerHTML = '当前页面地址：' + window.location;
+		}
+		aBtn3[2].onclick = function () {
+			window.location = 'http://www.baidu.com';
+		}
+	}
+</script>
+</body>
+</html>

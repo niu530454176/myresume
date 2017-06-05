@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1.box-re {
+			position: inherit;
+		}
+
+		#div1 > div {
+			width: 100%;
+			height: 60px;
+			transition: none;
+		}
+
+		.jingguo {
+			float: left;
+			display: inline;
+			padding: 20px;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		.chuxian {
+			float: left;
+			display: inline;
+			padding: 20px;
+			margin-left: 20px;
+			display: none;
+			cursor: pointer;
+			background: #efefef;
+		}
+
+		#div1 > div {
+			width: 100%;
+			height: 100px;
+			position: relative;
+		}
+
+		#div1 > div span {
+			width: 100px;
+			height: 100px;
+			background: #efefef;
+			transition: none;
+			line-height: 50px;
+			text-align: center;
+			cursor: pointer;
+			display: block;
+			position: absolute;
+			left: 0px;
+			top: 0;
+		}
+
+		#div1 > div > div {
+			width: 1px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			left: 500px;
+			top: 0;
+		}
+
+		#scrollTop {
+			width: 80px;
+			height: 300px;
+			background: yellow;
+			position: absolute;
+			right: 0;
+			bottom: 0px;
+			transition: none;
+			display: none;
+		}
+
+		#scrollTop button {
+			border-radius: 0;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+<div id="div1" class="box box-re form-inline">
+	1、缓冲运动与匀速运动的对比<br><br>
+	<button class="btn btn-info">匀速运动</button>
+	<button class="btn btn-info">缓冲运动</button>
+	<button class="btn btn-info">向上取整0.5</button>
+	<button class="btn btn-info">向下取整0.5</button>
+	<button class="btn btn-info">-7/7的绝对值</button>
+	<br><br>
+	<code>红线为距离500PX的标杆，点击方块可以复位。</code><br><br>
+	<div><span>速度/距离<br>0/0</span>
+		<div></div>
+	</div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	2、浮动层<br><br>
+	<button class="btn btn-info">展现底部浮动层</button>
+	<button class="btn btn-info">展现中间浮动层</button>
+	<br><br>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>缓冲运动：</b>当物体与终点的距离大的时候，速度越大，反之越小。速度和距离是成正比的。</p>
+	<p><b>距离越远速度越大：</b>速度由距离决定，速度=（目标值-当前值）／系数。例如：<br><code>(iTarget-this.offsetLeft)/10</code></p>
+	<p><b>速度取整：</b>但凡是用到缓冲运动，都必须取整。例如<br><code>speed=speed>0?Math.ceil(speed):Math.floor(speed);</code></p>
+	<p>
+		<b>缓冲浮动层：</b>建立一个运动函数，设置目标的参数iTarget为滚动距离<kbd>scrollTop</kbd>+<kbd>document.documentElement.clientHeight</kbd>-<kbd>当前层.offsetHeight</kbd>，速度为<kbd>(iTarget-当前层.offsetTop)/系数</kbd>。当offsetTop等于itarget时停止计时器，否则让当前层的top以速度自增。
+	</p>
+	<p><b>目标点取整：</b>例如当浮动层处于中间位置当时候必须要除以二，所以有可能出现.5而抖动，这时候就必须用<kbd>paseInt</kbd>进行目标点取整。</p>
+	<p><b>匀速运动的停止条件：</b>当速度不足以跑足目标点时，就需要用<kbd>Math.abs</kbd>来取剩余数当绝对值，同时用它判断是否小于等于speed。如果小于，就停止定时器，并直接把它设置到目标点的值。</p>
+</div>
+
+<div id="scrollTop">浮动层</div>
+<script>
+	var timer1 = null;
+	var timer2 = null;
+	var timer3 = null;
+	var timer4 = null;
+	var oDiv1 = document.getElementById('div1');
+	var aBtn1 = oDiv1.getElementsByTagName('button');
+	var aSpn1 = oDiv1.getElementsByTagName('span')[0];
+
+	aBtn1[0].onclick = function () {
+		var iTarget = 500;
+		var speed = 0;
+		clearInterval(timer1);
+		timer1 = setInterval(function () {
+			if (aSpn1.offsetLeft > iTarget) {
+				speed = -7;
+			}
+			else {
+				speed = 7;
+			}
+			if (aSpn1.offsetLeft == iTarget || Math.abs(iTarget - aSpn1.offsetLeft) <= speed) {
+				clearInterval(timer1);
+				aSpn1.style.left = iTarget + 'px';
+			}
+			else {
+				aSpn1.style.left = aSpn1.offsetLeft + speed + 'px';
+
+			}
+			aSpn1.innerHTML = '<span>速度/距离<br>' + speed + '/' + aSpn1.offsetLeft + '</span>';
+		}, 30)
+	};
+
+	aBtn1[1].onclick = function () {
+		var speed = 0;
+		var iTarget = 500;
+		timer2 = setInterval(function () {
+			speed = (iTarget - aSpn1.offsetLeft) / 10;
+			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+			aSpn1.style.left = aSpn1.offsetLeft + speed + 'px';
+			aSpn1.innerHTML = '<span>速度/距离<br>' + speed + '/' + aSpn1.offsetLeft + '</span>';
+			console.log(aSpn1.style.left);
+			if (aSpn1.style.left == '500px') {
+				clearInterval(timer2);
+			}
+		}, 30)
+	};
+
+	aBtn1[2].onclick = function () {
+		alert(Math.ceil(0.5));
+	}
+	aBtn1[3].onclick = function () {
+		alert(Math.floor(0.5));
+	}
+	aBtn1[4].onclick = function () {
+		alert('-7的绝对值是' + Math.abs(-7) + '\n' + '7的绝对值是' + Math.abs(7));
+	}
+
+	var oDiv2 = document.getElementById('div2');
+	var aBtn2 = oDiv2.getElementsByTagName('button');
+	var oStop = document.getElementById('scrollTop');
+	aBtn2[0].onclick = function () {
+		if (this.innerHTML == '展现底部浮动层') {
+			this.innerHTML = '隐藏底部浮动层';
+			this.className = 'btn btn-danger';
+			oStop.style.display = 'block';
+			window.onscroll = function () {
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				startMove(scrollTop + document.documentElement.clientHeight - oStop.offsetHeight);
+				function startMove(iTarget) {
+					clearInterval(timer3);
+					var speed = 0;
+					timer3 = setInterval(function () {
+						speed = (iTarget - oStop.offsetTop) / 10;
+						speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+						if (oStop.offsetTop == iTarget) {
+							clearInterval(timer3);
+						}
+						else {
+							oStop.style.top = oStop.offsetTop + speed + 'px';
+						}
+					}, 30)
+				}
+			}
+		}
+		else {
+			this.innerHTML = '展现底部浮动层';
+			this.className = 'btn btn-info';
+			oStop.style.display = 'none';
+			clearInterval(timer3);
+		}
+	}
+
+	aBtn2[1].onclick = function () {
+		if (this.innerHTML == '展现中间浮动层') {
+			this.innerHTML = '隐藏中间浮动层';
+			this.className = 'btn btn-danger';
+			oStop.style.display = 'block';
+			window.onscroll = function () {
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				startMove(parseInt((document.documentElement.clientHeight - oStop.offsetHeight) / 2 + scrollTop));
+				function startMove(iTarget) {
+					var speed = 0;
+					clearInterval(timer4);
+					timer4 = setInterval(function () {
+						speed = (iTarget - oStop.offsetTop) / 2;
+						speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+						if (oStop.offsetTop == iTarget) {
+							clearInterval(timer4);
+						}
+						else {
+							oStop.style.top = oStop.offsetTop + speed + 'px';
+						}
+					}, 30)
+				}
+			}
+		}
+		else {
+			this.innerHTML = '展现中间浮动层';
+			this.className = 'btn btn-info';
+			oStop.style.display = 'none';
+		}
+	}
+	aSpn1.onclick = function () {
+		console.log('@@');
+		aSpn1.removeAttribute('style')
+	};
+</script>
+</body>
+</html>

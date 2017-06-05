@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div2 div{background:black;font-size: 50px;color: white;}
+
+		#div3.box-re{position: inherit;}
+		#div3 > div{width: 100%;height: 60px;transition:none;}
+		.jingguo{float:left;display: inline;padding: 20px;cursor: pointer;background: #efefef;}
+		.chuxian{float:left;display: inline;padding: 20px;margin-left: 20px;display: none;cursor: pointer;background: #efefef;}
+	</style>
+</head>
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	1、定时器<br><br>
+	例1：setInterval 定时型<br>
+	<code>setInterval(show, 1000)</code> <button class="btn btn-info">开始弹出</button> 无终止执行 每隔一秒执行1次函数<br><br>
+	例2：setTimeout 延时型<br>
+	<code>setTimeout(show, 2000)</code> <button class="btn btn-info">开始弹出</button> 两秒后执行一次弹出就结束<br><br>
+	例3：开启和关闭<br>
+	<button class="btn btn-info">开启</button> <button class="btn btn-info">关闭</button> <code>clearInterval(函数名)</code><br><br>
+	<span class="text-warning">clearTimeout(函数名)是关闭setTimeout延时器的方法。</span>
+</div>
+<div id="div2" class="box box-re">
+	2、日期对象 Date<br><br>
+	获取 <button class="btn btn-info">当前小时</button> <button class="btn btn-info">当前分钟</button> <button class="btn btn-info">当前秒数</button><br><br>
+	假设当前时间是 <code>var str1='105123';</code> 做一个6位数字图片的循环，第i个图片的src就是第i个png。
+	<div class="box box-re">
+		<img src="js001/images/0.png" />
+		<img src="js001/images/0.png" />
+		:
+		<img src="js001/images/0.png" />
+		<img src="js001/images/0.png" />
+		:
+		<img src="js001/images/0.png" />
+		<img src="js001/images/0.png" />
+	</div>
+</div>
+
+<div id="div3" class="box box-re">
+	3、延时提示框<br><br>
+	<div><span class="jingguo">鼠标经过触发二级</span><span class="chuxian">鼠标离开关闭二级</span></div>
+</div>
+
+<div id="Record" class="box box-re red">
+	记录<br>
+	<p><b>定时器setInterval：</b><code>setInterval(show, 1000)</code> 无终止执行 每隔一秒执行1次函数。对应<code>clearInterval(变量名)</code>关闭定时器。</p>
+	<p><b>定时器setTimeout：</b><code>setTimeout(show, 2000)</code> 两秒后执行一次函数就结束。对应<code>clearTimeout(变量名)</code>关闭定时器。</p>
+	<p><b>关闭定时器：</b>需要指定出需要关闭得是哪个定时器。通过<code>time=null</code> clearInterval(time参数)来指定关闭哪个定时器。</p>
+	<p><b>Date对象：</b>首先需要创建个新日期对象出来，例如<code>var oDate=new Date()</code> 获取方法：getFullYear年、getMonth月、getDate日、getDay星期、getHours时、getMinutes分、getSeconds秒。例如获取当前小时<code>oDate.getHours()</code></p>
+	<p><b>时间补零&字符串连接：</b>例如将6分改成06分。建立函数，做一个判断，如果这个数字小于10，那他就是个单数，就需要给他补一个0返回出去。例如<code>return '0'+n;</code>，否则就是大于等于10的，说明已经是双数，那么就直接返回出去。例如<code>return ''+n;</code>。加''是为了让返回出去的数字类型变成字符串。</p>
+	<p><b>变量调用匿名函数：</b>任何需要添加函数名的变量，都可以直接把函数内容存进去，即匿名函数。</p>
+	<p><b>函数第一时间执行：</b>例如有一个函数<code>function show()</code>需要在第一时间执行，就把函数名show()放到onload里。这样就会立刻执行show()。</p>
+	<p><b>charAt：</b>charAt(0)作用于兼容 获取字符串上某一位的东西。例如<code>var str='abcdefg'</code>，如果想弹出第0位上的东西不可以直接写成<code>alert(str[0])</code>，部分浏览器会不兼容。这个时候就需要用到charAt()。即<code>alert(str.charAt(0))</code></p>
+	<p><b>延时提示框：</b>当鼠标经过div1显示出div2，当鼠标移出div1隐藏div2（通过用setTimeout延时500毫秒执行隐藏），当鼠标从div1移动到div2的时候div2保持可见状态（通过clearTimeout()执行关闭刚才的延时隐藏，这样就做到了div2保持可见），当鼠标移出div2则隐藏（再次用setTimeout延时500毫秒执行隐藏，同时设置当鼠标经过div1的时候关闭刚才的延时隐藏）。</p>
+</div>
+<script>
+	function toDou (n)
+	{
+		if(n<10)
+		{
+			return '0'+n;
+		}
+		else
+		{
+			return ''+n;
+		}
+	}
+	window.onload=function ()
+	{
+		var aBtn1=document.getElementById('div1').getElementsByTagName('button');
+		aBtn1[0].onclick=function ()
+		{
+			var i=0;
+			function show ()
+			{
+				alert('这是弹出框，第'+i+'次弹出');
+				return i+=1;
+			}
+			setInterval(show,2000)
+		}
+		aBtn1[1].onclick=function ()
+		{
+			function show ()
+			{
+				alert('这是弹出框');
+			}
+			setTimeout(show,2000);
+		}
+		var timer1=null;
+		aBtn1[2].onclick=function ()
+		{
+			var i=0;
+			function show ()
+			{
+				alert('这是弹出框，第'+i+'次弹出');
+				return i+=1;
+			}
+			timer1=setInterval(show,1000);
+		}
+		aBtn1[3].onclick=function ()
+		{
+			clearInterval(timer1);
+		}
+
+		var oDiv2=document.getElementById('div2');
+		var aBtn2=oDiv2.getElementsByTagName('button');
+		var oDte2=new Date;
+		aBtn2[0].onclick=function ()
+		{
+			var a=oDte2.getHours();
+			alert('当前时间是：'+a+'时');
+		}
+		aBtn2[1].onclick=function ()
+		{
+			var a=oDte2.getMinutes();
+			alert('当前时间是：'+a+'分');
+		}
+		aBtn2[2].onclick=function ()
+		{
+			var a=oDte2.getSeconds();
+			alert('当前时间是：'+a+'秒');
+		}
+		var aImg2=oDiv2.getElementsByTagName('img');
+		function tick ()
+		{
+			var oDte3=new Date;
+			var aStr2=toDou(oDte3.getHours())+toDou(oDte3.getMinutes())+toDou(oDte3.getSeconds());
+			for(var i=0;i<aStr2.length;i++)
+			{
+				aImg2[i].src='js001/images/'+aStr2[i]+'.png';
+			}
+		}
+		setInterval(tick,1000);
+		tick();
+
+		var aSpn3=document.getElementById('div3').getElementsByTagName('span');
+		var timer3=null;
+		aSpn3[0].onmouseover=function ()
+		{
+			clearTimeout(timer3);
+			aSpn3[1].style.display='block';
+		}
+		aSpn3[0].onmouseout=function ()
+		{
+			timer3=setTimeout(function (){
+				aSpn3[1].style.display='none';
+			},500)
+		}
+		aSpn3[1].onmouseover=function ()
+		{
+			clearTimeout(timer3);
+			aSpn3[1].style.display='block';
+		}
+		aSpn3[1].onmouseout=function ()
+		{
+			timer3=setTimeout(function (){
+				aSpn3[1].style.display='none';
+			},500)
+		}
+
+	}
+</script>
+</body>
+</html>

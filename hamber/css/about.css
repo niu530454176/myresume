@@ -1,0 +1,38 @@
+/*主体内容开始*/
+.content{
+    padding: 32px;
+    margin-bottom: -30px;
+}
+.content .w{
+    background:#ffffcc;
+    border: 8px solid #822619;
+    width: 864px;
+    border-radius: 8px;
+    margin-top: 0;
+    padding: 32px;
+
+}
+.content h1{
+    font-size: 36px;
+    color: #336666;
+    line-height: 68px;
+}
+.content h2{
+    font-size: 24px;
+    color: #993300;
+    line-height: 64px;
+}
+.content p{
+    font-size: 16px;
+    color: #330000;
+    line-height: 40px;
+}
+.content .content_bottom {
+    line-height: 100px;
+}
+.content a{
+    color: #330000;
+}
+.content a:hover{
+    color: #80210b;
+}

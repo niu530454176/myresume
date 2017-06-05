@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JAVAscript练习</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../css/style.css" rel="stylesheet">
+	<style>
+		#div1 > div{display: none; padding: 20px;margin: 0px;}
+		.box .btn{border-radius:0;}
+	</style>
+</head>
+
+<body>
+<pre>
+<h1><a href="../../index.html">JAVAscript练习</a></h1>
+<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=49y41uK" class="right"><img border="0" src="../../images/group.png" alt="我想学前端" title="我想学前端"></a>
+</pre>
+
+<div id="div1" class="box box-re form-inline">
+	一、选项卡练习<br><br>
+	<button type="button" class="btn btn-info.active">栏目一</button>
+	<button type="button" class="btn btn-info">栏目二</button>
+	<button type="button" class="btn btn-info">栏目三</button>
+	<button type="button" class="btn btn-info">栏目四</button>
+	<div class="alert-info" style="display: block">栏目一的内容<br>栏目一的内容<br>栏目一的内容<br>栏目一的内容</div>
+	<div class="alert-info">栏目二的内容<br>栏目二的内容<br>栏目二的内容<br>栏目二的内容</div>
+	<div class="alert-info">栏目三的内容<br>栏目三的内容<br>栏目三的内容<br>栏目三的内容</div>
+	<div class="alert-info">栏目四的内容<br>栏目四的内容<br>栏目四的内容<br>栏目四的内容</div>
+</div>
+
+<div id="div2" class="box box-re form-inline">
+	二、数组练习<br><br>
+	<button type="button" class="btn btn-default">弹出一</button>
+	<button type="button" class="btn btn-default">弹出二</button>
+	<button type="button" class="btn btn-default">弹出三</button>
+	<button type="button" class="btn btn-default">弹出四</button>
+	<button type="button" class="btn btn-info">全部弹出</button>
+</div>
+
+<div id="div3" class="box box-re form-inline">
+	三、switch判断练习<br><br>
+	弹出问候 分析：<br>
+	<input type="text" class="form-control" placeholder="姓名" />
+	<select class="form-control">
+		<option value="0">性别</option>
+		<option value="1">男</option>
+		<option value="2">女</option>
+	</select>
+	<button class="btn btn-info">问候</button><br>
+</div>
+<script>
+	window.onload=function ()
+	{
+		var oDiv1=document.getElementById('div1');
+		var aBtn1=oDiv1.getElementsByTagName('button');
+		var aDiv1=oDiv1.getElementsByTagName('div');
+		for(var i=0;i<aBtn1.length;i++)
+		{
+			aBtn1[i].index=i;
+			aBtn1[i].onclick=function ()
+			{
+				for(var i=0;i<aBtn1.length;i++)
+				{
+					aBtn1[i].className='btn btn-info';
+					aDiv1[i].style.display='none';
+				}
+				this.className='btn btn-info.active';
+				aDiv1[this.index].style.display='block';
+			}
+		}
+
+		var oDiv2=document.getElementById('div2');
+		var aBtn2=oDiv2.getElementsByTagName('button');
+		var aArr2=['这是第一句','这是第二句','这是第三句','这是第四句'];
+		for(var i=0;i<aBtn2.length;i++)
+		{
+			aBtn2[i].index=i;
+			aBtn2[i].onclick=function ()
+			{
+				alert(aArr2[this.index]);
+			}
+			if(i==4)
+			{
+				aBtn2[i].onclick=function ()
+				{
+					var i=0;
+					while(i<aBtn2.length-1)
+					{
+						alert(aArr2[i]);
+						i++;
+					}
+				}
+			}
+		}
+
+		var oDiv3=document.getElementById('div3');
+		var aBtn3=oDiv3.getElementsByTagName('button')[0];
+		var aIpt3=oDiv3.getElementsByTagName('input')[0];
+		var aSlt3=oDiv3.getElementsByTagName('select')[0];
+		aBtn3.onclick=function ()
+		{
+			if(aIpt3.value==''||!isNaN(aIpt3.value))
+			{
+				alert('必须输入姓名才能谈出问候');
+			}
+			else
+			{
+				var name=aIpt3.value;
+				var sexy=aSlt3.options[aSlt3.selectedIndex].innerHTML;
+				switch(sexy)
+				{
+					case '男':
+						alert(name+'先生，你好');
+						break;
+
+					case '女':
+						alert(name+'女士，你好');
+						break;
+
+					default:
+						alert(name+'你好');
+						break;
+				}
+			}
+			aIpt3.value=null;
+		}
+	}
+</script>
+</body>
+</html>
